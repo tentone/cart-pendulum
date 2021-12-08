@@ -5,12 +5,14 @@
 	"author": "Tentone",
 	"license": "MIT",
 	"scripts": {
-		"build": "webpack --config webpack.config.js"
+		"build": "webpack --config webpack.config.js",
+		"docs": "codo source/*"
 	},
 	"dependencies": {
 		"brain.js": "~2.0.0-beta.4"
 	},
 	"devDependencies": {
+		"codo": "^2.1.2",
 		"coffee-loader": "^3.0.0",
 		"coffeescript": "~2.6.1",
 		"webpack": "^5.65.0",
