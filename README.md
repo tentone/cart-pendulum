@@ -13,6 +13,8 @@
 
 <img src="\readme\human.gif" width="600">
 
+
+
 ### Linear Model
 
 - A [live demo of the model](https://tentone.github.io/cart-pendulum/model) is available. Its parameters can be changed in the GUI.
@@ -23,7 +25,9 @@
 
 <img src="\readme\model-diagram.png" width="500">
 
-### Training
+
+
+### Training Linear Model
 
 - The challenge with training is to determine the ideal `m` and`b` for each input variable and the `e` value.
 - In other words training will consist in experimenting different values until we reach a value that is successful.
@@ -36,6 +40,8 @@
 - We start with a random base model, test variations of the model and select the one that improved results, repeat until we get good results.
 
 
+
+Neural-Network
 
 
 

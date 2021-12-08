@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript" src="source/Vector2.js"></script>
+	<script type="text/javascript" src="source/Box.js"></script>
+	<script type="text/javascript" src="source/Line.js"></script>
+	<script type="text/javascript" src="source/Cart.js"></script>
+	<script type="text/javascript" src="source/LinearRegression.js"></script>
+	<script type="text/javascript" src="source/LinearCartModel.js"></script>
+	<script type="text/javascript" src="source/Training.js"></script>
+	<script type="text/javascript" src="source/Runner.js"></script>
+
+	<canvas id="canvas" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;"></canvas>
+
+	<button id="trainIterative">Iterative Training</button>
+	<button id="trainRandomized">Randomized Training</button><br/>
+	<button id="run">Run with Model</button><br/>
+	<button id="clear">Clear Console</button><br/>
+
+	<br/>
+
+	<input id="iterations" type="number" value="5000">Iterations</input> <br/>
+	<input id="epochs" type="number" value="1000">Epochs</input> <br/>
+	<input id="runs" type="number" value="5">Runs</input>  <br/>
+	
+	<div id="terminal" style="overflow-y: auto; background-color: #000000BB; position: absolute; width: 100%; height: 30%; bottom: 0px; left: 0px;"></div>
+
+	<script type="text/javascript" src="linear.js"></script>
+</body>
+</html>
