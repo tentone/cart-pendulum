@@ -2,7 +2,6 @@ import {Cart} from "./Cart"
 
 # Methods to run the simulation in headless mode (terminal only), or attached to a canvas (Graphical).
 class Runner:
-
     # Run the simulation headlessly (in terminal).
     # 
     # The simulation is run until the stick is dropped off.
@@ -30,8 +29,6 @@ class Runner:
             console.log(" - Simulation ended with " + cart.score + " points, took " + (end - time) + ".")
 
         return cart.score
-    }
-
 
     # Run the simulation with visualization, (attached to a canvas).
     # 
