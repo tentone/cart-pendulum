@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript" src="source/Vector2.js"></script>
+	<script type="text/javascript" src="source/Box.js"></script>
+	<script type="text/javascript" src="source/Line.js"></script>
+	<script type="text/javascript" src="source/Cart.js"></script>
+	<script type="text/javascript" src="source/LinearRegression.js"></script>
+	<script type="text/javascript" src="source/ModelCart.js"></script>
+	<script type="text/javascript" src="source/Training.js"></script>
+	<script type="text/javascript" src="source/Runner.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<canvas id="canvas" style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;"></canvas>
+
+	<script>
+		var canvas = document.getElementById("canvas");
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		document.body.onresize = function()
+		{
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		};
+
+		var left = false;
+		var right = false;
+		document.body.onkeydown = function(event)
+		{
+			// Left
+			if(event.keyCode === 37)
+			{
+				left = true;
+			}
+			// Right
+			if(event.keyCode === 39)
+			{
+				right = true;	
+			}
+		};
+
+		document.body.onkeyup = function(event)
+		{
+			// Left
+			if(event.keyCode === 37)
+			{
+				left = false;
+			}
+			// Right
+			if(event.keyCode === 39)
+			{
+				right = false;	
+			}
+		};
+
+		Runner.runGraphical(canvas, function(cart)
+		{
+			cart.leftPressed = left;
+			cart.rightPressed = right;
+		});
+	</script>
+</body>
+</html>
