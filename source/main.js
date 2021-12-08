@@ -1,6 +1,6 @@
 export {Box} from "./Box";
 export {Cart} from "./Cart";
-export {Line} from "./Line";
+export {Line} from "./Line.coffee";
 export {LinearModel} from "./LinearModel";
 export {LinearRegression} from "./LinearRegression";
 export {Runner} from "./Runner";

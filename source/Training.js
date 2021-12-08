@@ -11,9 +11,9 @@ function Training(){}
  * 
  * Uses a seasonal training approach for wich many epochs are executed and the best from each epoch is selected as based for the next.
  * 
- * @param {number} epochs Number of iterations/epochs to simulate.
- * @param {number} iterations Number of variations tested in each epoch.
- * @param {number} runs How many times to run each variation to get an average performance.
+ * @param [number] epochs Number of iterations/epochs to simulate.
+ * @param [number] iterations Number of variations tested in each epoch.
+ * @param [number] runs How many times to run each variation to get an average performance.
  * @returns {LinearModel} Trained model that can be used to control the simulation.
  */
  Training.trainIterative = function(epochs, iterations, runs, scoreLimit)
@@ -73,8 +73,8 @@ function Training(){}
 /**
  * Fully randomized training, test many parameters and select the best from all.
  * 
- * @param {number} iterations Number of variations tested in each epoch.
- * @param {number} runs How many times to run each variation to get an average performance.
+ * @param [number] iterations Number of variations tested in each epoch.
+ * @param [number] runs How many times to run each variation to get an average performance.
  * @returns {LinearModel} Trained model that can be used to control the simulation.
  */
  Training.trainRandom = function(iterations, runs, scoreLimit)
@@ -121,9 +121,9 @@ function Training(){}
 /**
  * Run the model, multiple times and average the pontuation of the runs.
  * 
- * @param {LinearModel} model Model to be tested.
- * @param {number} runs Number of iterations to test the model.
- * @param {number} scoreLimit If the score of the model gets better than the limit the simulation stops.
+ * @param [LinearModel] model Model to be tested.
+ * @param [number] runs Number of iterations to test the model.
+ * @param [number] scoreLimit If the score of the model gets better than the limit the simulation stops.
  * @return {number} The average performance score of the model.
  */
 Training.testModel = function(model, runs, scoreLimit)

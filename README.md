@@ -8,7 +8,7 @@
 
   <img src="https://tentone.github.io/cart-pendulum/readme/inverted-pendulum.png" width="300">
 
-- Might seem a fairly simple task but takes a while even for a human player to master it. [Try it out here for yourself.](https://tentone.github.io/cart-pendulum/human) Or just watch me trying to play it bellow.
+- Might seem a fairly simple task but takes a while even for a human player to master it. [Try it out here for yourself.](https://tentone.github.io/cart-pendulum/examples/human) Or just watch me trying to play it bellow.
 - While the game is running a score is calculated based on the amount of time that the player was able to hold the pendulum without hitting the wall.
 
 <img src="https://tentone.github.io/cart-pendulum/readme/human.gif" width="600">
@@ -17,7 +17,7 @@
 
 ### Linear Model
 
-- A [live demo of the model](https://tentone.github.io/cart-pendulum/model) is available with two training approaches for the linear model. Training parameters can be changed in the GUI.
+- A [live demo of the linear model](https://tentone.github.io/cart-pendulum/examples/linear) is available with two training approaches for the linear model. Training parameters can be changed in the GUI.
 - The model has three inputs: the `position` and `velocity` of the cart and the `angle` of pendulum.
 - The model has two outputs: `left` button pressed and `right` button pressed.
 - For each input parameter a linear weight (m) and offset (b) are be applied.
@@ -52,7 +52,22 @@
 ### Neural-Network
 
 - Now that we got the basics right lets try and train the system using a more complex neural model with [brain.js](https://brain.js.org/)
--  Our inputs will be the same `position`, `velocity` and `angle` and the outputs will be `right` and `left`.
+- Our inputs will be the same `position`, `velocity` and `angle` and the outputs will be `right` and `left`.
+- Contraty to the linear model where we test combinations of parameters to find the best configuration.
+- For the neural-network we need to provide datasets of game variables and decisions for training.
+- These datasets can be recorded from sessions from human players or even for example from the linear model.
+
+```json
+[
+	{
+		"input": {"velocity": 1.246, "angle": -0.0163, "position": 3.17},
+		"output": {"left": false, "right": true}
+	},
+	...
+]
+```
+
+
 
 
 

@@ -10,9 +10,9 @@ function Runner() {}
  * 
  * The simulation is run until the stick is dropped off.
  * 
- * @param {Function} logicCallback Callback method to process the cart logic.
- * @param {number} pointLimit How much time to simulate in the limit (prevent infinite run).
- * @param {boolean} logPerformance If true console logs with performance of the simulation are printed out.
+ * @param [Function] logicCallback Callback method to process the cart logic.
+ * @param [number] pointLimit How much time to simulate in the limit (prevent infinite run).
+ * @param [boolean] logPerformance If true console logs with performance of the simulation are printed out.
  * @returns Returns the ammount of points accumulated during the simulation.
  */
 Runner.runHeadless = function(logicCallback, pointLimit, logPerformance)
@@ -51,9 +51,9 @@ Runner.runHeadless = function(logicCallback, pointLimit, logPerformance)
  * 
  * Runs at real time speed for visualization purposes.
  * 
- * @param {Element} canvas Canvas element where the interface is drawn.
- * @param {Function} onIteration Method called every iteration of the simulation to control the cart.
- * @param {Function} onGameOver Method called when the simulation ends.
+ * @param [Element] canvas Canvas element where the interface is drawn.
+ * @param [Function] onIteration Method called every iteration of the simulation to control the cart.
+ * @param [Function] onGameOver Method called when the simulation ends.
  */
 Runner.runGraphical = function(canvas, onIteration, onGameOver)
 {

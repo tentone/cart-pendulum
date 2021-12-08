@@ -75,7 +75,7 @@ Cart.prototype.reset = function()
 /**
  * Draw the simulation to a context 2D for visualization.
  * 
- * @param {CanvasRenderingContext2D} context 
+ * @param [CanvasRenderingContext2D] context 
  */
 Cart.prototype.draw = function(context)
 {

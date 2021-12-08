@@ -6,8 +6,8 @@ function Utils() {}
 /**
  * Write data into a file. Useful to export JSON data.
  * 
- * @param {string | object} data Data to be written to file. 
- * @param {string} fname Name of the file to be written.
+ * @param [string | object] data Data to be written to file. 
+ * @param [string] fname Name of the file to be written.
  */
 Utils.writeFile = function(data, fname)
 {
