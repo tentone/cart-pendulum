@@ -15,16 +15,39 @@ function Cart()
      */
     this.boxHalfSize = 50;
 
-    this.box = new Box(new Vector2(-this.boxHalfSize, -30), new Vector2(this.boxHalfSize, 30));
-    this.line = new Line(new Vector2(0, 0), new Vector2(0, 100));
+    /**
+     * Acceleration used for movement of the cart on key press.
+     */
+    this.moveAcceleration = 0.2;
+
+    /**
+     * Limit angle that the pendulum can reach.
+     */
+    this.limitAngle = 0.7;
+
+    /**
+     * Box that represents the cart.
+     */
+    this.cart = new Box(new Vector2(-this.boxHalfSize, -30), new Vector2(this.boxHalfSize, 30));
+
+    /**
+     * Line to represent the pendulum
+     */
+    this.pendulum = new Line(new Vector2(0, 0), new Vector2(0, 100));
     
+    /**
+     * Left barrier limit.
+     */
     this.barrierLeft = new Line(new Vector2(-this.barrierDistance, -1000), new Vector2(-this.barrierDistance, 1000));
+    
+    /**
+     * Right barrier limit.
+     */
     this.barrierRight = new Line(new Vector2(this.barrierDistance, -1000), new Vector2(this.barrierDistance, 1000));
     this.reset();
 }
 
-Cart.moveAcceleration = 0.2;
-Cart.limitAngle = 0.7;
+
 
 /**
  * Reset the simulation parameters back to a initial state.
@@ -61,17 +84,17 @@ Cart.prototype.draw = function(context)
     context.strokeStyle = "#FF0000";
     context.lineWidth = 1;
     context.beginPath();
-    context.moveTo(Math.sin(-Cart.limitAngle) * 100, Math.cos(-Cart.limitAngle) * 100);
+    context.moveTo(Math.sin(-this.limitAngle) * 100, Math.cos(-this.limitAngle) * 100);
     context.lineTo(0, 0);
-    context.lineTo(Math.sin(Cart.limitAngle) * 100, Math.cos(Cart.limitAngle) * 100);
+    context.lineTo(Math.sin(this.limitAngle) * 100, Math.cos(this.limitAngle) * 100);
     context.stroke();
 
     context.strokeStyle = "#000000";
     context.lineWidth = 3;
-    this.line.end.x = Math.sin(this.angle) * 100;
-    this.line.end.y = Math.cos(this.angle) * 100;
-    this.line.draw(context);
-    this.box.draw(context);
+    this.pendulum.end.x = Math.sin(this.angle) * 100;
+    this.pendulum.end.y = Math.cos(this.angle) * 100;
+    this.pendulum.draw(context);
+    this.cart.draw(context);
 };
 
 /**
@@ -88,8 +111,8 @@ Cart.prototype.update = function()
     }
 
     // Process key presses
-    if(this.leftPressed){this.acceleration = -Cart.moveAcceleration;}
-    else if(this.rightPressed){this.acceleration = Cart.moveAcceleration;}
+    if(this.leftPressed){this.acceleration = -this.moveAcceleration;}
+    else if(this.rightPressed){this.acceleration = this.moveAcceleration;}
     else {this.acceleration = 0.0;}
 
     // Update physics
@@ -101,7 +124,7 @@ Cart.prototype.update = function()
     this.points++;
 
     // If the angle of the pendulum drop bellow the minium end the game
-    if(this.angle > Cart.limitAngle || this.angle < -Cart.limitAngle)
+    if(this.angle > this.limitAngle || this.angle < -this.limitAngle)
     {
         this.gameOver = true;
     }

@@ -53,7 +53,7 @@ Runner.runHeadless = function(logicCallback, pointLimit, logPerformance)
  * @param {Function} onIteration Method called every iteration of the simulation to control the cart.
  * @param {Function} onGameOver Method called when the simulation ends.
  */
-Runner.runGraphical = function(canvas, onIteration)
+Runner.runGraphical = function(canvas, onIteration, onGameOver)
 {
     var cart = new Cart();
     var context = canvas.getContext("2d");
@@ -74,7 +74,7 @@ Runner.runGraphical = function(canvas, onIteration)
             {
                 onGameOver(cart, maxPoints);
             }
-
+            
             if(cart.points > maxPoints)
             {
                 maxPoints = cart.points;
