@@ -1,3 +1,8 @@
+/**
+ * Model to control the cart, its parameters can be set and used to control the cart.
+ * 
+ * The model is composed of 3 linear regressions for wich their parameters can be trained and used to control the cart object.
+ */
 function ModelCart()
 {
     this.velOri = 0;

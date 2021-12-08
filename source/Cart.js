@@ -1,3 +1,8 @@
+/**
+ * Cart object, that contains the entire logic for the simulation.
+ * 
+ * The cart can be configured
+ */
 function Cart()
 {
     this.barrierDistance = 400;
@@ -15,6 +20,11 @@ function Cart()
 Cart.moveAcceleration = 0.2;
 Cart.limitAngle = 0.7;
 
+/**
+ * Reset the simulation parameters back to a initial state.
+ * 
+ * The initial velocity of the cart is randomized.
+ */
 Cart.prototype.reset = function()
 {
     this.gameOver = false;
@@ -29,6 +39,11 @@ Cart.prototype.reset = function()
     this.angle = 0;
 };
 
+/**
+ * Draw the simulation to a context 2D for visualization.
+ * 
+ * @param {CanvasRenderingContext2D} context 
+ */
 Cart.prototype.draw = function(context)
 {
     this.barrierLeft.draw(context);
@@ -53,6 +68,11 @@ Cart.prototype.draw = function(context)
     this.box.draw(context);
 };
 
+/**
+ * Update the logic of the simulation.
+ * 
+ * The cart moves according to its velocity, the stick is used based on velocity and its current angle (gravity).
+ */
 Cart.prototype.update = function()
 {
     if(this.gameOver)
