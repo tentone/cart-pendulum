@@ -18,6 +18,16 @@ function LinearRegression(ori, decl)
  * @param {number} scale Scale of the jittering. 
  */
 LinearRegression.prototype.jitter = function(scale) {
-    this.ori += (Math.random() * scale) - (scale / 2);
-    this.decl += (Math.random() * scale) - (scale / 2);
+    this.ori += (Math.random() - 0.5) * scale;
+    this.decl += (Math.random() - 0.5) * scale;
+};
+
+/**
+ * Create a copy of the linear regression object.
+ * 
+ * @returns Clone of the linear regression object.
+ */
+LinearRegression.prototype.clone = function()
+{
+    return new LinearRegression(this.ori, this.decl);
 };

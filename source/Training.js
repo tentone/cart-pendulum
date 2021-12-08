@@ -27,24 +27,23 @@ function Training(){}
 	var bestModel = new LinearCartModel();
 	var bestScore = Training.testModel(bestModel, runs, scoreLimit);
 
-	var jitter = 0.1;
+	var jitter = 1.0;
 	
 	// Epoch
 	for(var e = 0; e < epochs; e++)
 	{
 		console.log(" - Running epoch ", e, " score ", bestScore);
 
-		var epochModel = bestModel.clone();
-		var epochScore = bestScore;
+		var epochModel = null;
+		var epochScore = 0;
 
 		// Number of iterations per epoch
 		for(var i = 0; i < iterations; i++)
 		{
-			var model = epochModel.clone();
+			var model = bestModel.clone();
 			model.jitter(jitter);
 			
 			var points = Training.testModel(model, runs, scoreLimit);
-
 			if(points > epochScore)
 			{
 				epochModel = model;
@@ -87,12 +86,14 @@ function Training(){}
 
 	var bestModel = null;
 	var bestScore = 0;
- 
+	
+	var jitter = 2.0;
+
 	// Tests per epoch
 	for(var i = 0; i < iterations; i++)
 	{
 		var model = new LinearCartModel();
-		model.jitter(2.0);
+		model.jitter(jitter);
 		
 		var score = Training.testModel(model, runs, scoreLimit);
 		if(score > bestScore)

@@ -32,18 +32,21 @@
 - The challenge with training is to determine the ideal `m` and`b` for each input variable and the `e` value.
 - In other words training will consist in experimenting different values until we reach a value that is successful.
 - A simple approach to train the model is simply to randomly test for values until a good set of parameters appears that yields a good score.
+- As we can see for this case after 490K combinations we obtained one that yields perfect results! 
+- Took a while but means that simple linear model can handle the task.
 
 <img src="\readme\model.gif" width="600">
 
-- For this simple scenario this approach can get fairly good results after a couple of minutes but it would not be usable for any real complex environment.
-- To ensure convergence of the training process a iterative/genetic approach can be use used.
+- This training approach of course would not be usable for any real complex environment.
+- To ensure convergence of the training process a iterative/genetic approach should be used.
 - We start with a random base model, test variations of the model and select the one that improved results, repeat until we get good results.
+- During this process we should also look out for `local maximum`. This happens when we get stuck with values that cannot be improved further.
 
 
 
-Neural-Network
+### Neural-Network
 
-
+TODO
 
 
 
