@@ -1,4 +1,4 @@
-import {Vector2} from "./Vector2";
+import {Vector2} from "./Vector2.coffe";
 import {Line} from "./Line";
 import {Box} from "./Box";
 

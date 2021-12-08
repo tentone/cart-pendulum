@@ -6,4 +6,4 @@ export {LinearRegression} from "./LinearRegression";
 export {Runner} from "./Runner";
 export {Training} from "./Training";
 export {Utils} from "./Utils";
-export {Vector2} from "./Vector2";
+export {Vector2} from "./Vector2.coffe";
