@@ -6,12 +6,12 @@
 
 - The game ends if the stick falls off the cart or if the cart hits the side walls. To control the cart the player can press left or right to accelerate the cart.
 
-  <img src="\readme\inverted-pendulum.png" width="300">
+  <img src="https://tentone.github.io/cart-pendulum/readme/inverted-pendulum.png" width="300">
 
 - Might seem a fairly simple task but takes a while even for a human player to master it. [Try it out here for yourself.](https://tentone.github.io/cart-pendulum/human) Or just watch me trying to play it bellow.
 - While the game is running a score is calculated based on the amount of time that the player was able to hold the pendulum without hitting the wall.
 
-<img src="\readme\human.gif" width="600">
+<img src="https://tentone.github.io/cart-pendulum/readme/human.gif" width="600">
 
 
 
@@ -23,7 +23,7 @@
 - For each input parameter a linear weight (m) and offset (b) are be applied.
 - The final decision is the sum of all weights that is then compared with a threshold to decide the action.
 
-<img src="\readme\model-diagram.png" width="500">
+<img src="https://tentone.github.io/cart-pendulum/readme/model-diagram.png" width="500">
 
 
 
@@ -35,19 +35,19 @@
 - As we can see for this case after 490K combinations we obtained one that yields perfect results! 
 - Took a while but means that simple linear model can handle the task.
 
-<img src="\readme\model.gif" width="600">
+<img src="https://tentone.github.io/cart-pendulum/readme/model.gif" width="600">
 
 - This training approach of course would not be usable for any real complex environment.
 - To ensure convergence of the training process a iterative/genetic approach should be used.
 
-<img src="\readme\iterative-training.png" width="400">
+<img src="https://tentone.github.io/cart-pendulum/readme/iterative-training.png" width="400">
 
 - We start with a random base model, test variations of the model and select the one that improved results, repeat until we get good results.
 - With iterative training we can get near perfect results few epochs (~5 in average) wich is a lot faster than random testing.
 
 - During this process we should also look out for local maximum. This happens when we get stuck with values that cannot be improved further.
 
-
+<img src="https://tentone.github.io/cart-pendulum/readme/maxima-minima.png" width="400">
 
 ### Neural-Network
 
