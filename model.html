@@ -12,13 +12,19 @@
 	<script type="text/javascript" src="source/ModelCart.js"></script>
 	<script type="text/javascript" src="source/Training.js"></script>
 	<script type="text/javascript" src="source/Runner.js"></script>
-	<script type="text/javascript" src="main.js"></script>
 
-	<canvas id="canvas" style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;"></canvas>
+	
+	<canvas id="canvas" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;"></canvas>
 
 	<button id="train">Train Model</button>
-	<button id="run">Run with Model</button>
+	<button id="run">Run with Model</button><br/><br/>
+
+	<input id="iterations" type="number">Iterations</input> <br/>
+	<input id="epoch" type="number">Epochs</input> <br/>
+	<input id="runs" type="number">Runs</input>  
 	
+	<div id="terminal" style="overflow-y: auto; background-color: #000000BB; position: absolute; width: 100%; height: 30%; bottom: 0px; left: 0px;"></div>
+
 	<script>
 		var canvas = document.getElementById("canvas");
 		canvas.width = window.innerWidth;
@@ -28,12 +34,39 @@
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
 		};
+		
+		var model = new ModelCart;
 
-		Runner.runGraphical(canvas, function(cart)
+		var run = document.getElementById("run");
+		run.onclick = function()
 		{
-			cart.leftPressed = cart.angle < 0;
-			cart.rightPressed = cart.angle > 0;		
-		});
+			Runner.runGraphical(canvas, function(cart)
+			{
+				model.control(cart);	
+			});
+		};
+
+		var train = document.getElementById("train");
+		train.onclick = function()
+		{
+			model = Training.trainModelCart();
+		};
+
+		var consoleLog = console.log;
+		console.log = function() {
+			consoleLog(...arguments);
+			var terminal = document.getElementById("terminal");
+			var p = document.createElement("p");
+			p.style.color = "#FFFFFF";
+			for(var i of arguments) {
+				if (typeof i === "object") {
+					i = JSON.stringify(i);
+				}
+				p.appendChild(new Text(i));
+			}
+			terminal.appendChild(p);
+		}
+
 	</script>
 </body>
 </html>

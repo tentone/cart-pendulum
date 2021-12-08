@@ -10,38 +10,38 @@ function Training(){}
  * 
  * @param {number} epochs Number of epochs to simulate.
  * @param {number} iterations Number of variations tested in each epoch.
+ * @param {number} runs How many times to run each variation to get an average performance.
  * @returns {ModelCart} Trained model that can be used to control the simulation.
  */
-Training.trainModelCart = function(epochs, iterations)
+Training.trainModelCart = function(epochs, iterations, runs)
 {
-    if (!epochs) {
-        epochs = 3000;
-    }
-
-    if (!iterations) {
-        iterations = 10;
-    }
+    epochs = epochs !== undefined ? epochs : 30;
+    iterations = iterations !== undefined ? iteration : 10;
+    runs = runs !== undefined ? runs : 5;
 
     function runModel(model)
     {
         var points = 0;
-        var runs = 5;
 
         // Runs per test
         for(var r = 0; r < runs; r++)
         {
-            points += runHeadless(function(cart)
+            points += Runner.runHeadless(function(cart)
             {
                 model.control(cart);
             });
         }
 
-        points /= runs;
-        return points;
+        return points / runs;
     }
+
+    console.log(" - Training process starting.")
 
     var bestGlobal = new ModelCart();
     var bestGlobalPoints = runModel(bestGlobal);
+
+    console.log(" - Baseline results is ", bestGlobal)
+
     var lastEpochPoints = 0;
 
     var jitterEpoch = 0.1;
@@ -50,7 +50,7 @@ Training.trainModelCart = function(epochs, iterations)
     // Epoch
     for(var epoch = 0; epoch < epochs; epoch++)
     {
-        console.log("Running epoch " + epoch + ", points: " + bestGlobalPoints + ", model: ", bestGlobal);
+        console.log(" - Running epoch ", epoch, " performance ", bestGlobalPoints, " model ", bestGlobal);
 
         var bestEpoch = bestGlobal.clone();
         var bestEpochPoints = bestGlobalPoints;

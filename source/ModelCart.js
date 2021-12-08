@@ -5,9 +5,9 @@
  */
 function ModelCart()
 {
-    this.vel = new LinearRegression(0, 0.1);
+    this.vel = new LinearRegression(0, 0.0);
 
-    this.angle = new LinearRegression(0, 0.9);
+    this.angle = new LinearRegression(0, 0.0);
 
     this.pos = new LinearRegression(0, 0.0);
 

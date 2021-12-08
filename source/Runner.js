@@ -8,12 +8,15 @@ function Runner() {}
  * 
  * The simulation is run until the stick is dropped off.
  * 
- * @param {Function} logicCallback 
- * @param {boolean} logPerformance 
+ * @param {Function} logicCallback Callback method to process the cart logic.
+ * @param {number} pointLimit How much time to simulate in the limit (prevent infinite run).
+ * @param {boolean} logPerformance If true console logs with performance of the simulation are printed out.
  * @returns Returns the ammount of points accumulated during the simulation.
  */
-Runner.runHeadless = function(logicCallback, logPerformance)
+Runner.runHeadless = function(logicCallback, pointLimit, logPerformance)
 {
+    pointLimit = pointLimit !== undefined ? pointLimit : Infinity;
+
     var cart = new Cart();
     
     if(logPerformance)
@@ -21,19 +24,21 @@ Runner.runHeadless = function(logicCallback, logPerformance)
         var time = performance.now();
     }
 
-    while(!cart.gameOver)
+    while(!cart.gameOver && cart.points < pointLimit)
     {	
         if(logicCallback !== undefined)
         {
             logicCallback(cart);
         }
+
         cart.update();
     }
     
     if(logPerformance)
     {
         var end = performance.now();
-        console.log("Simulation ended with " + cart.points + " points, took " + (end - time) + ".");
+
+        console.log(" - Simulation ended with " + cart.points + " points, took " + (end - time) + ".");
     }
 
     return cart.points;
