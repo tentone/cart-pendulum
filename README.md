@@ -32,7 +32,10 @@
 <img src="\readme\model.gif" width="600">
 
 - For this simple scenario this approach can get fairly good results after a couple of minutes but it would not be usable for any real complex environment.
-- To ensure convergence of the training process a iterative genetic approach can be use used. We start with a random base model, test variations of the model and select the one that improved results, repeat until we get good r 
+- To ensure convergence of the training process a iterative/genetic approach can be use used.
+- We start with a random base model, test variations of the model and select the one that improved results, repeat until we get good results.
+
+
 
 
 

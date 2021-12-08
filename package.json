@@ -5,6 +5,9 @@
 	"scripts": {
 		"start": ""
 	},
+	"dependencies": {
+		"brain.js": "^2.0.0-beta.4"
+	},
 	"author": "Tentone",
 	"license": "MIT"
 }

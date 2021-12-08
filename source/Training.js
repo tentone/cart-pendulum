@@ -11,7 +11,7 @@ function Training(){}
  * @param {number} epochs Number of iterations/epochs to simulate.
  * @param {number} iterations Number of variations tested in each epoch.
  * @param {number} runs How many times to run each variation to get an average performance.
- * @returns {ModelCart} Trained model that can be used to control the simulation.
+ * @returns {LinearCartModel} Trained model that can be used to control the simulation.
  */
  Training.trainIterative = function(epochs, iterations, runs, scoreLimit)
  {
@@ -24,10 +24,10 @@ function Training(){}
 
 	console.log(" - Training process starting. ", {epochs, iterations, runs});
 
-	var bestModel = new ModelCart();
+	var bestModel = new LinearCartModel();
 	var bestScore = Training.testModel(bestModel, runs, scoreLimit);
 
-	var jitter = 0.3;
+	var jitter = 0.1;
 	
 	// Epoch
 	for(var e = 0; e < epochs; e++)
@@ -73,7 +73,7 @@ function Training(){}
  * 
  * @param {number} iterations Number of variations tested in each epoch.
  * @param {number} runs How many times to run each variation to get an average performance.
- * @returns {ModelCart} Trained model that can be used to control the simulation.
+ * @returns {LinearCartModel} Trained model that can be used to control the simulation.
  */
  Training.trainRandom = function(iterations, runs, scoreLimit)
  {
@@ -85,13 +85,13 @@ function Training(){}
 
 	console.log(" - Training process starting. ", {iterations, runs});
 
-	var bestModel = new ModelCart();
-	var bestScore = Training.testModel(bestModel, runs, scoreLimit);
+	var bestModel = null;
+	var bestScore = 0;
  
 	// Tests per epoch
 	for(var i = 0; i < iterations; i++)
 	{
-		var model = new ModelCart();
+		var model = new LinearCartModel();
 		model.jitter(2.0);
 		
 		var score = Training.testModel(model, runs, scoreLimit);
@@ -117,7 +117,7 @@ function Training(){}
 /**
  * Run the model, multiple times and average the pontuation of the runs.
  * 
- * @param {ModelCart} model Model to be tested.
+ * @param {LinearCartModel} model Model to be tested.
  * @param {number} runs Number of iterations to test the model.
  * @param {number} scoreLimit If the score of the model gets better than the limit the simulation stops.
  * @return {number} The average performance score of the model.
