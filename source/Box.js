@@ -1,4 +1,4 @@
-import {Vector2} from "./Vector2.coffe";
+import {Vector2} from "./Vector2.coffee";
 
 /**
  * Box is represented from a minimum and a maximum points.

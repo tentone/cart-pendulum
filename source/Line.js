@@ -1,4 +1,4 @@
-import {Vector2} from "./Vector2.coffe";
+import {Vector2} from "./Vector2.coffee";
 
 /**
  * Line between two points (origin to end).
