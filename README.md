@@ -1,9 +1,9 @@
-# Cart Balance
+# Cart Pendulum
 
 - Small game written in JavaScript to demonstrate some basics machine learning using a simple linear regression model.
 - The objective of the game is to balance the stick in the cart while keeping the cart inside of the lines as long as possible.
 - The game ends if the stick falls off the cart or if the cart hits the side walls. To control the cart the player can press left or right to accelerate the cart.
-- Might seem a fairly simple task but takes a while even for a human player to master it. Try it out here for yourself.
+- Might seem a fairly simple task but takes a while even for a human player to master it. [Try it out here for yourself.]()
 
 
 
