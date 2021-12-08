@@ -1,3 +1,5 @@
+import {Vector2} from "./Vector2";
+
 /**
  * Line between two points (origin to end).
  * 
@@ -33,3 +35,5 @@ Line.prototype.draw = function(context)
     context.lineTo(this.end.x, this.end.y);
     context.stroke();
 };
+
+export {Line};

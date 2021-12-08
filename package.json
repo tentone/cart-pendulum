@@ -5,6 +5,7 @@
 	"author": "Tentone",
 	"license": "MIT",
 	"scripts": {
+        "build": "",
 		"start": "http-server . -o"
 	},
 	"dependencies": {
@@ -12,7 +13,7 @@
 	},
 	"devDependencies": {
 		"coffeescript": "^2.6.1",
-		"http-server": "^14.0.0",
-		"rollup": "^2.60.2"
+        "rollup": "^2.9.1",
+		"rollup-plugin-serve": "^2.0.0-beta.0"
 	}
 }

@@ -1,3 +1,5 @@
+import {Cart} from "./Cart";
+
 /**
  * Methods to run the simulation in headless mode (terminal only), or attached to a canvas (Graphical).
  */
@@ -104,3 +106,5 @@ Runner.runGraphical = function(canvas, onIteration, onGameOver)
 
     loop();
 };
+
+export {Runner};

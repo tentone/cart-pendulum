@@ -1,3 +1,7 @@
+import {Vector2} from "./Vector2";
+import {Line} from "./Line";
+import {Box} from "./Box";
+
 /**
  * Cart object, that contains the entire logic for the simulation.
  * 
@@ -136,3 +140,4 @@ Cart.prototype.update = function()
     }
 };
 
+export {Cart};

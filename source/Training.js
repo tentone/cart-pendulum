@@ -1,3 +1,6 @@
+import {Runner} from "./Runner"
+import {LinearModel} from "./LinearModel"
+
 /**
  * Methods for training of the cart model.
  */
@@ -135,3 +138,5 @@ Training.testModel = function(model, runs, scoreLimit)
 	}
 	return score / runs;
 };
+
+export {Training};

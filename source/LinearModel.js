@@ -1,3 +1,5 @@
+import {LinearRegression} from "./LinearRegression";
+
 /**
  * Model to control the cart, its parameters can be set and used to control the cart.
  * 
@@ -46,3 +48,5 @@ LinearModel.prototype.control = function(cart)
 	cart.leftPressed = value < this.e;
 	cart.rightPressed = value > this.e;
 };
+
+export {LinearModel};

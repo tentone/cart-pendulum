@@ -31,3 +31,5 @@ LinearRegression.prototype.clone = function()
 {
     return new LinearRegression(this.ori, this.decl);
 };
+
+export {LinearRegression};

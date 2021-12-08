@@ -60,3 +60,5 @@ Utils.readFile = function(onLoad)
 
 	chooser.click();
 };
+
+export {Utils};

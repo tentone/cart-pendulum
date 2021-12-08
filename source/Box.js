@@ -1,3 +1,5 @@
+import {Vector2} from "./Vector2";
+
 /**
  * Box is represented from a minimum and a maximum points.
  * 
@@ -31,3 +33,5 @@ Box.prototype.draw = function(context)
     context.lineWidth = 3;
     context.strokeRect(this.min.x, this.min.y, size.x, size.y);
 };
+
+export {Box};
