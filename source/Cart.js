@@ -57,7 +57,7 @@ function Cart()
 Cart.prototype.reset = function()
 {
     this.gameOver = false;
-    this.points = 0;
+    this.score = 0;
     this.position = 0;
     this.leftPressed = false;
     this.rightPressed = false;
@@ -121,7 +121,7 @@ Cart.prototype.update = function()
     this.position += this.velocity;
 
     this.angle += (this.angle * 3e-2) + (-this.velocity * 5e-3);
-    this.points++;
+    this.score++;
 
     // If the angle of the pendulum drop bellow the minium end the game
     if(this.angle > this.limitAngle || this.angle < -this.limitAngle)

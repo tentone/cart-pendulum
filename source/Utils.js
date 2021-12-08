@@ -43,10 +43,17 @@ Utils.readFile = function(onLoad)
 
 	chooser.onchange = function()
 	{	
-		if (onLoad !== undefined)
-		{
-			onLoad(chooser.files);
-		}
+        var files = chooser.files;
+        if (files.length === 0) {
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function() {
+            var text = reader.result;
+            onLoad(text);
+        };
+        reader.readAsText(files[0]);
 
 		document.body.removeChild(chooser);
 	};

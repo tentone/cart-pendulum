@@ -1,0 +1,211 @@
+[
+	{
+		"input": {
+			"velocity": 0.6787439824492807,
+			"angle": 0,
+			"position": 0
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 0.8699565426247878,
+			"angle": -0.004349782713123939,
+			"position": 0.8699565426247878
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 1.05925697719854,
+			"angle": -0.009776561080510358,
+			"position": 1.9292135198233278
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 1.2466644074265547,
+			"angle": -0.016303179950058443,
+			"position": 3.1758779272498825
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 1.432197763352289,
+			"angle": -0.02395326416532164,
+			"position": 4.608075690602171
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 1.6158757857187662,
+			"angle": -0.032751241018875124,
+			"position": 6.223951476320938
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 1.7977170278615786,
+			"angle": -0.04272236338874927,
+			"position": 8.021668504182516
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 1.9777398575829628,
+			"angle": -0.05389273357832656,
+			"position": 9.999408361765479
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 2.155962459007133,
+			"angle": -0.06628932788071201,
+			"position": 12.155370820772612
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 2.3324028344170618,
+			"angle": -0.07994002188921868,
+			"position": 14.487773655189674
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 2.5070788060728915,
+			"angle": -0.0948736165762597,
+			"position": 16.994852461262564
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 2.680008018012163,
+			"angle": -0.1111198651636083,
+			"position": 19.674860479274727
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 2.8512079378320414,
+			"angle": -0.12870950080767676,
+			"position": 22.526068417106767
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 3.0206958584537213,
+			"angle": -0.14767426512417567,
+			"position": 25.546764275560488
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 3.1884888998691845,
+			"angle": -0.16804693757724687,
+			"position": 28.735253175429673
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 3.3546040108704926,
+			"angle": -0.18986136575891674,
+			"position": 32.089857186300165
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 3.519057970761788,
+			"angle": -0.21315249658549318,
+			"position": 35.60891515706195
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 3.6818673910541704,
+			"angle": -0.23795640843832883,
+			"position": 39.29078254811612
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	},
+	{
+		"input": {
+			"velocity": 3.843048717143629,
+			"angle": -0.26431034427719685,
+			"position": 43.13383126525975
+		},
+		"output": {
+			"left": false,
+			"right": true
+		}
+	}
+]

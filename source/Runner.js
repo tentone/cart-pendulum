@@ -24,7 +24,7 @@ Runner.runHeadless = function(logicCallback, pointLimit, logPerformance)
         var time = performance.now();
     }
 
-    while(!cart.gameOver && cart.points < pointLimit)
+    while(!cart.gameOver && cart.score < pointLimit)
     {	
         if(logicCallback !== undefined)
         {
@@ -38,10 +38,10 @@ Runner.runHeadless = function(logicCallback, pointLimit, logPerformance)
     {
         var end = performance.now();
 
-        console.log(" - Simulation ended with " + cart.points + " points, took " + (end - time) + ".");
+        console.log(" - Simulation ended with " + cart.score + " points, took " + (end - time) + ".");
     }
 
-    return cart.points;
+    return cart.score;
 };
 
 /**
@@ -74,10 +74,10 @@ Runner.runGraphical = function(canvas, onIteration, onGameOver)
             {
                 onGameOver(cart, maxPoints);
             }
-            
-            if(cart.points > maxPoints)
+
+            if(cart.score > maxPoints)
             {
-                maxPoints = cart.points;
+                maxPoints = cart.score;
             }
 
             cart.reset();
@@ -90,7 +90,7 @@ Runner.runGraphical = function(canvas, onIteration, onGameOver)
         // Text in the canvas
         context.font = "15px Arial";
         context.textAlign = "left";
-        context.fillText("Points: " + cart.points, 10, 20);
+        context.fillText("Points: " + cart.score, 10, 20);
         context.fillText("Max: " + maxPoints, 10, 40);
 
         //Transform
