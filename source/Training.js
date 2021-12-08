@@ -8,81 +8,129 @@ function Training(){}
  * 
  * Uses a seasonal training approach for wich many epochs are executed and the best from each epoch is selected as based for the next.
  * 
- * @param {number} epochs Number of epochs to simulate.
+ * @param {number} epochs Number of iterations/epochs to simulate.
  * @param {number} iterations Number of variations tested in each epoch.
  * @param {number} runs How many times to run each variation to get an average performance.
  * @returns {ModelCart} Trained model that can be used to control the simulation.
  */
-Training.trainModelCart = function(epochs, iterations, runs)
-{
-    epochs = epochs !== undefined ? epochs : 30;
-    iterations = iterations !== undefined ? iteration : 10;
-    runs = runs !== undefined ? runs : 5;
+ Training.trainIterative = function(epochs, iterations, runs, scoreLimit)
+ {
+	epochs = epochs !== undefined ? epochs : 500;
+	iterations = iterations !== undefined ? iterations : 100;
+	runs = runs !== undefined ? runs : 5;
 
-    function runModel(model)
-    {
-        var points = 0;
+	// If the model reaches this level of performance the training is stopped.
+	scoreLimit = scoreLimit !== undefined ? scoreLimit : 2000.0;
 
-        // Runs per test
-        for(var r = 0; r < runs; r++)
-        {
-            points += Runner.runHeadless(function(cart)
-            {
-                model.control(cart);
-            });
-        }
+	console.log(" - Training process starting. ", {epochs, iterations, runs});
 
-        return points / runs;
-    }
+	var bestModel = new ModelCart();
+	var bestScore = Training.testModel(bestModel, runs, scoreLimit);
 
-    console.log(" - Training process starting.")
+	var jitter = 0.3;
+	
+	// Epoch
+	for(var e = 0; e < epochs; e++)
+	{
+		console.log(" - Running epoch ", e, " score ", bestScore);
 
-    var bestGlobal = new ModelCart();
-    var bestGlobalPoints = runModel(bestGlobal);
+		var epochModel = bestModel.clone();
+		var epochScore = bestScore;
 
-    console.log(" - Baseline results is ", bestGlobal)
+		// Number of iterations per epoch
+		for(var i = 0; i < iterations; i++)
+		{
+			var model = epochModel.clone();
+			model.jitter(jitter);
+			
+			var points = Training.testModel(model, runs, scoreLimit);
 
-    var lastEpochPoints = 0;
+			if(points > epochScore)
+			{
+				epochModel = model;
+				epochScore = points;
+			}
+		}
 
-    var jitterEpoch = 0.1;
-    var jitterEpochDiff = 0.1;
+		if(epochScore >= bestScore)
+		{
+			bestModel = epochModel;
+			bestScore = epochScore;
+		}
 
-    // Epoch
-    for(var epoch = 0; epoch < epochs; epoch++)
-    {
-        console.log(" - Running epoch ", epoch, " performance ", bestGlobalPoints, " model ", bestGlobal);
+		if (bestScore >= scoreLimit)
+		{
+			break;
+		}
+	}
 
-        var bestEpoch = bestGlobal.clone();
-        var bestEpochPoints = bestGlobalPoints;
+	console.log(" - Training finished with score ", bestScore, " model ", bestModel);
+	return bestModel;
+ };
 
-        // Tests per epoch
-        for(var t = 0; t < iterations; t++)
-        {
-            var model = bestEpoch.clone();
-            model.jitter(jitterEpoch);
-            
-            var points = runModel(model);
+/**
+ * Fully randomized training, test many parameters and select the best from all.
+ * 
+ * @param {number} iterations Number of variations tested in each epoch.
+ * @param {number} runs How many times to run each variation to get an average performance.
+ * @returns {ModelCart} Trained model that can be used to control the simulation.
+ */
+ Training.trainRandom = function(iterations, runs, scoreLimit)
+ {
+	iterations = iterations !== undefined ? iterations : 1e5;
+	runs = runs !== undefined ? runs : 5;
 
-            if(points > bestEpochPoints)
-            {
-                bestEpoch = model;
-                bestEpochPoints = points;
-            }
-        }
+	// If the model reaches this level of performance the training is stopped.
+	scoreLimit = scoreLimit !== undefined ? scoreLimit : 2000.0;
 
-        if(bestEpochPoints >= bestGlobalPoints)
-        {
-            bestGlobal = model;
-            bestGlobalPoints = bestEpochPoints;
-        }
+	console.log(" - Training process starting. ", {iterations, runs});
 
-        if(lastEpochPoints === bestEpochPoints)
-        {
-            jitterEpoch += jitterEpochDiff;
-        }
+	var bestModel = new ModelCart();
+	var bestScore = Training.testModel(bestModel, runs, scoreLimit);
+ 
+	// Tests per epoch
+	for(var i = 0; i < iterations; i++)
+	{
+		var model = new ModelCart();
+		model.jitter(2.0);
+		
+		var score = Training.testModel(model, runs, scoreLimit);
+		if(score > bestScore)
+		{
+			bestModel = model;
+			bestScore = score;
+		}
 
-        lastEpochPoints = bestEpochPoints;
-    }
+		console.log(" - Iteration ", i, " score ", bestScore);
 
-    return bestGlobal;
+		if (bestScore >= scoreLimit)
+		{
+			break;
+		}
+	}
+
+	console.log(" - Training finished with score ", bestScore, " model ", bestModel);
+
+	return bestModel;
 }
+
+/**
+ * Run the model, multiple times and average the pontuation of the runs.
+ * 
+ * @param {ModelCart} model Model to be tested.
+ * @param {number} runs Number of iterations to test the model.
+ * @param {number} scoreLimit If the score of the model gets better than the limit the simulation stops.
+ * @return {number} The average performance score of the model.
+ */
+Training.testModel = function(model, runs, scoreLimit)
+{
+	var score = 0;
+	for(var r = 0; r < runs; r++)
+	{
+		score += Runner.runHeadless(function(cart)
+		{
+			model.control(cart);
+		}, scoreLimit);
+	}
+	return score / runs;
+};

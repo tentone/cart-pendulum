@@ -14,13 +14,13 @@ function ModelCart()
     this.e = 0.0;
 }
 
-ModelCart.prototype.jitter = function(max)
+ModelCart.prototype.jitter = function(scale)
 {
-    this.vel.jitter(max);
-    this.angle.jitter(max);
-    this.pos.jitter(max);
+    this.vel.jitter(scale);
+    this.angle.jitter(scale);
+    this.pos.jitter(scale);
 
-    this.e += (Math.random() * max) - (max / 2);
+    this.e += (Math.random() * scale) - (scale / 2);
 };
 
 ModelCart.prototype.clone = function()
