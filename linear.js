@@ -7,7 +7,7 @@ document.body.onresize = function()
 	canvas.height = window.innerHeight;
 };
 
-var model = new LinearCartModel;
+var model = new LinearModel;
 
 var run = document.getElementById("run");
 run.onclick = function()
