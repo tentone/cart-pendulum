@@ -43,7 +43,7 @@ var bestData = [];
 var bestScore = 0;
 var recordData = true;
 
-Runner.runGraphical(canvas, function(cart)
+CP.Runner.runGraphical(canvas, function(cart)
 {
 	cart.leftPressed = left;
 	cart.rightPressed = right;
@@ -76,5 +76,5 @@ function(cart, score)
 var exp = document.getElementById("export");
 exp.onclick = function()
 {
-	Utils.writeFile(bestData, "data.json");
+	CP.Utils.writeFile(bestData, "data.json");
 };

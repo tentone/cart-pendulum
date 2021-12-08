@@ -7,12 +7,12 @@ document.body.onresize = function()
 	canvas.height = window.innerHeight;
 };
 
-var model = new LinearModel;
+var model = new CP.LinearModel;
 
 var run = document.getElementById("run");
 run.onclick = function()
 {
-	Runner.runGraphical(canvas, function(cart)
+	CP.Runner.runGraphical(canvas, function(cart)
 	{
 		model.control(cart);	
 	});
@@ -27,7 +27,7 @@ trainIterative.onclick = function()
 	var iterations = Number.parseInt(document.getElementById("iterations").value);
 	var runs = Number.parseInt(document.getElementById("runs").value);
 
-	model = Training.trainIterative(epochs, iterations, runs);
+	model = CP.Training.trainIterative(epochs, iterations, runs);
 };
 
 var trainRandomized = document.getElementById("trainRandomized");

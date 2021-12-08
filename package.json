@@ -5,8 +5,8 @@
 	"author": "Tentone",
 	"license": "MIT",
 	"scripts": {
-        "build": "",
-		"start": "http-server . -o"
+		"start": "rollup -c rollup.dev.js",
+		"build": "rollup -c"
 	},
 	"dependencies": {
 		"brain.js": "^2.0.0-beta.4"

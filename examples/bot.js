@@ -7,7 +7,7 @@ document.body.onresize = function()
 	canvas.height = window.innerHeight;
 };
 
-Runner.runGraphical(canvas, function(cart)
+CP.Runner.runGraphical(canvas, function(cart)
 {
 	cart.leftPressed = cart.angle < 0;
 	cart.rightPressed = cart.angle > 0;		

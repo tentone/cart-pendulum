@@ -10,4 +10,4 @@ function Vector2(x, y)
     this.y = y;
 }
 
-export {Vector};
+export {Vector2};
