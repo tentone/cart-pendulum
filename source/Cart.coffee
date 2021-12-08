@@ -5,7 +5,7 @@ import {Box} from "./Box"
 # Cart object, that contains the entire logic for the simulation.
 # 
 # The cart can be configured
-function Cart()
+class Cart
     constructor: () ->
         # Distance of the barriers relative to the center.
         @barrierDistance = 400
@@ -85,8 +85,8 @@ function Cart()
         # Process key presses
         if @leftPressed
             @acceleration = -@moveAcceleration
-        else if
-            @rightPressed@acceleration = @moveAcceleration
+        else if @rightPressed
+            @acceleration = @moveAcceleration
         else
             @acceleration = 0.0
 

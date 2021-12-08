@@ -1,7 +1,7 @@
 const Path = require("path");
 
 module.exports = [{
-	entry: './source/main.js',
+	entry: './source/main.coffee',
 	mode: "production",
 	optimization: {minimize: true},
 	target: "web",

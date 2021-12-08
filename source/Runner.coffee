@@ -1,7 +1,7 @@
 import {Cart} from "./Cart"
 
 # Methods to run the simulation in headless mode (terminal only), or attached to a canvas (Graphical).
-class Runner:
+class Runner
     # Run the simulation headlessly (in terminal).
     # 
     # The simulation is run until the stick is dropped off.
@@ -11,7 +11,7 @@ class Runner:
     # @param [boolean] logPerformance If true console logs with performance of the simulation are printed out.
     # @returns Returns the ammount of points accumulated during the simulation.
     @runHeadless: (logicCallback, pointLimit, logPerformance) ->
-        pointLimit = pointLimit !== undefined ? pointLimit : Infinity
+        pointLimit = if pointLimit != undefined then pointLimit else Infinity
 
         cart = new Cart()
         
@@ -19,7 +19,7 @@ class Runner:
             time = performance.now()
 
         while !cart.gameOver and cart.score < pointLimit
-            if logicCallback !== undefined
+            if logicCallback != undefined
                 logicCallback(cart)
             
             cart.update()
@@ -42,14 +42,14 @@ class Runner:
         context = canvas.getContext("2d")
         maxPoints = 0
 
-        loop = () ->
-            if onIteration !== undefined
+        update = () ->
+            if onIteration != undefined
                 onIteration(cart)
 
             cart.update()
 
             if cart.gameOver
-                if onGameOver !== undefined
+                if onGameOver != undefined
                     onGameOver(cart, maxPoints)
 
                 if cart.score > maxPoints 
@@ -73,8 +73,8 @@ class Runner:
             cart.draw(context)
 
             context.restore()
-            requestAnimationFrame(loop)
+            requestAnimationFrame(update)
 
-        loop()
+        update()
 
 export {Runner}

@@ -4,7 +4,7 @@ import {LinearModel} from "./LinearModel"
 # Methods for training of the cart model.
 #
 # Training produces a linear model of the cart, that can be used to control the simulation.
-class Training:
+class Training
 	# Train the model of the cart iterativelly.
 	# 
 	# Uses a seasonal training approach for wich many epochs are executed and the best from each epoch is selected as based for the next.
@@ -14,12 +14,12 @@ class Training:
 	# @param [number] runs How many times to run each variation to get an average performance.
 	# @returns {LinearModel} Trained model that can be used to control the simulation.
 	@trainIterative: (epochs, iterations, runs, scoreLimit) ->
-		epochs = epochs !== undefined ? epochs : 500
-		iterations = iterations !== undefined ? iterations : 100
-		runs = runs !== undefined ? runs : 5
+		epochs = if epochs != undefined then epochs else 500
+		iterations = if iterations != undefined then iterations else 100
+		runs = if runs != undefined then runs else 5
 
 		# If the model reaches this level of performance the training is stopped.
-		scoreLimit = scoreLimit !== undefined ? scoreLimit : 2000.0
+		scoreLimit = if scoreLimit != undefined then scoreLimit else 2000.0
 
 		console.log(" - Training process starting. ", {epochs, iterations, runs})
 
@@ -29,14 +29,16 @@ class Training:
 		jitter = 1.0
 		
 		# Epoch
-		for (e = 0; e < epochs; e++)
+		e = 0
+		while e < epochs
 			console.log(" - Running epoch ", e, " score ", bestScore)
 
 			epochModel = null
 			epochScore = 0
 
 			# Number of iterations per epoch
-			for(i = 0; i < iterations;  i++)
+			i = 0
+			while i < iterations
 				model = bestModel.clone()
 				model.jitter(jitter)
 				
@@ -45,6 +47,7 @@ class Training:
 					epochModel = model
 					epochScore = points
 				
+				i++
 
 			if epochScore >= bestScore
 				bestModel = epochModel
@@ -52,6 +55,7 @@ class Training:
 
 			if bestScore >= scoreLimit
 				break
+			e++
 
 		console.log(" - Training finished with score ", bestScore, " model ", bestModel)
 		return bestModel
@@ -62,11 +66,11 @@ class Training:
 	# @param [number] runs How many times to run each variation to get an average performance.
 	# @returns {LinearModel} Trained model that can be used to control the simulation.
 	@trainRandom: (iterations, runs, scoreLimit) ->
-		iterations = iterations !== undefined ? iterations : 1e5
-		runs = runs !== undefined ? runs : 5
+		iterations = if iterations != undefined then iterations else 1e5
+		runs = if runs != undefined then runs else 5
 
 		# If the model reaches this level of performance the training is stopped.
-		scoreLimit = scoreLimit !== undefined ? scoreLimit : 2000.0
+		scoreLimit = if scoreLimit != undefined then scoreLimit else 2000.0
 
 		console.log(" - Training process starting. ", {iterations, runs})
 
@@ -76,7 +80,8 @@ class Training:
 		jitter = 2.0
 
 		# Tests per epoch
-		for(i = 0; i < iterations; i++)
+		i = 0
+		while i < iterations
 			model = new LinearModel()
 			model.jitter(jitter)
 			
@@ -89,6 +94,8 @@ class Training:
 
 			if bestScore >= scoreLimit
 				break
+			
+			i++
 
 		console.log(" - Training finished with score ", bestScore, " model ", bestModel)
 
@@ -102,9 +109,15 @@ class Training:
 	# @return {number} The average performance score of the model.
 	@testModel: (model, runs, scoreLimit) ->
 		score = 0
-		for(r = 0; r < runs; r++)
-			score += Runner.runHeadless((cart) -> model.control(cart), scoreLimit)
-
+		r = 0
+		while r < runs
+			control = (cart) ->
+				model.control(cart)
+				return
+				
+			score += Runner.runHeadless(control, scoreLimit)
+			r++
+		
 		return score / runs
 
 export {Training}
