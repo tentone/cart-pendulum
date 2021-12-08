@@ -11,7 +11,7 @@ function ModelCart()
 
     this.pos = new LinearRegression(0, 0.0);
 
-    this.e = 0.0;
+    this.e = 0.5;
 }
 
 ModelCart.prototype.jitter = function(scale)
