@@ -60,6 +60,7 @@ Training.trainModelCart = function(epochs, iterations)
         {
             var model = bestEpoch.clone();
             model.jitter(jitterEpoch);
+            
             var points = runModel(model);
 
             if(points > bestEpochPoints)

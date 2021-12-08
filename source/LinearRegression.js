@@ -17,6 +17,7 @@ function LinearRegression(ori, decl)
  * 
  * @param {number} scale Scale of the jittering. 
  */
-LinearRegression.prototype.jitter = function(max) {
-
-}
+LinearRegression.prototype.jitter = function(scale) {
+    this.ori += (Math.random() * scale) - (scale / 2);
+    this.decl += (Math.random() * scale) - (scale / 2);
+};
