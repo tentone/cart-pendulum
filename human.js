@@ -1,3 +1,5 @@
+import { func } from "assert-plus";
+
 var canvas = document.getElementById("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -42,4 +44,18 @@ Runner.runGraphical(canvas, function(cart)
 {
 	cart.leftPressed = left;
 	cart.rightPressed = right;
+},
+function(cart, score)
+{
+	cart;
 });
+
+
+var exp = document.getElementById("export");
+exp.onclick = function()
+{
+	Runner.runGraphical(canvas, function(cart)
+	{
+		model.control(cart);	
+	});
+};

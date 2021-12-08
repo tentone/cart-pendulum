@@ -5,9 +5,15 @@
  */
 function Cart()
 {
+    /**
+     * Distance of the barriers relative to the center.
+     */
     this.barrierDistance = 400;
+
+    /**
+     * Half the size of the cart box.
+     */
     this.boxHalfSize = 50;
-    this.limitPoints = Infinity; //1e5;
 
     this.box = new Box(new Vector2(-this.boxHalfSize, -30), new Vector2(this.boxHalfSize, 30));
     this.line = new Line(new Vector2(0, 0), new Vector2(0, 100));
@@ -75,15 +81,18 @@ Cart.prototype.draw = function(context)
  */
 Cart.prototype.update = function()
 {
+    // If game over return
     if(this.gameOver)
     {
         return;
     }
 
+    // Process key presses
     if(this.leftPressed){this.acceleration = -Cart.moveAcceleration;}
     else if(this.rightPressed){this.acceleration = Cart.moveAcceleration;}
     else {this.acceleration = 0.0;}
 
+    // Update physics
     this.velocity += this.acceleration;
     this.velocity *= this.friction;
     this.position += this.velocity;
@@ -91,15 +100,14 @@ Cart.prototype.update = function()
     this.angle += (this.angle * 3e-2) + (-this.velocity * 5e-3);
     this.points++;
 
+    // If the angle of the pendulum drop bellow the minium end the game
     if(this.angle > Cart.limitAngle || this.angle < -Cart.limitAngle)
     {
         this.gameOver = true;
     }
+
+    // If the cart hits the barried end the game
     if(this.position + this.boxHalfSize > this.barrierDistance || this.position - this.boxHalfSize < -this.barrierDistance)
-    {
-        this.gameOver = true;
-    }
-    if(this.points > this.limitPoints)
     {
         this.gameOver = true;
     }
