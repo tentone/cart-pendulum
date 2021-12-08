@@ -49,10 +49,11 @@ Runner.runHeadless = function(logicCallback, pointLimit, logPerformance)
  * 
  * Runs at real time speed for visualization purposes.
  * 
- * @param {Element} canvas
- * @param {Function} logicCallback 
+ * @param {Element} canvas Canvas element where the interface is drawn.
+ * @param {Function} onIteration Method called every iteration of the simulation to control the cart.
+ * @param {Function} onGameOver Method called when the simulation ends.
  */
-Runner.runGraphical = function(canvas, logicCallback)
+Runner.runGraphical = function(canvas, onIteration)
 {
     var cart = new Cart();
     var context = canvas.getContext("2d");
@@ -60,15 +61,20 @@ Runner.runGraphical = function(canvas, logicCallback)
 
     function loop()
     {
-        if(logicCallback !== undefined)
+        if(onIteration !== undefined)
         {
-            logicCallback(cart);
+            onIteration(cart);
         }
 
         cart.update();
 
         if(cart.gameOver)
         {
+            if(onGameOver !== undefined)
+            {
+                onGameOver(cart, maxPoints);
+            }
+
             if(cart.points > maxPoints)
             {
                 maxPoints = cart.points;

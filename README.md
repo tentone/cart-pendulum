@@ -1,6 +1,6 @@
 # Cart Pendulum
 
-- Small game written in JavaScript to demonstrate some basics machine learning using a simple linear regression model.
+- Small game to demonstrate basic machine learning concepts using a simple linear regression model.
 
 - The objective of the game is to balance the stick in the cart while keeping the cart inside of the lines as long as possible.
 
@@ -51,7 +51,8 @@
 
 ### Neural-Network
 
-TODO
+- Now that we got the basics right lets try and train the system using a more complex neural model with [brain.js](https://brain.js.org/)
+-  Our inputs will be the same `position`, `velocity` and `angle` and the outputs will be `right` and `left`.
 
 
 

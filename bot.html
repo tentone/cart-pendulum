@@ -15,21 +15,6 @@
 
 	<canvas id="canvas" style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;"></canvas>
 
-	<script>
-		var canvas = document.getElementById("canvas");
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-		document.body.onresize = function()
-		{
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
-		};
-
-		Runner.runGraphical(canvas, function(cart)
-		{
-			cart.leftPressed = cart.angle < 0;
-			cart.rightPressed = cart.angle > 0;		
-		});
-	</script>
+	<script type="text/javascript" src="bot.js"></script>
 </body>
 </html>

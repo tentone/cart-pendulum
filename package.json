@@ -2,13 +2,17 @@
 	"name": "cart-pendulum",
 	"version": "0.0.1",
 	"description": "",
+	"author": "Tentone",
+	"license": "MIT",
 	"scripts": {
 		"start": "http-server . -o"
 	},
 	"dependencies": {
-		"brain.js": "^2.0.0-beta.4",
-		"http-server": "^14.0.0"
+		"brain.js": "^2.0.0-beta.4"
 	},
-	"author": "Tentone",
-	"license": "MIT"
+	"devDependencies": {
+		"coffeescript": "^2.6.1",
+		"http-server": "^14.0.0",
+		"rollup": "^2.60.2"
+	}
 }
