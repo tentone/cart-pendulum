@@ -47,7 +47,7 @@
 
 - During this process we should also look out for local maximum. This happens when we get stuck with values that cannot be improved further.
 
-<img src="https://tentone.github.io/cart-pendulum/readme/maxima-minima.png" width="400">
+<img src="https://tentone.github.io/cart-pendulum/readme/maxima-minima.png" width="500">
 
 ### Neural-Network
 
