@@ -1,6 +1,10 @@
+import coffeescript from 'rollup-plugin-coffee-script';
 
 export default {
 	input: "source/main.js",
+	plugins: [
+		coffeescript()
+	],
 	output: [
 		{
 			format: "umd",

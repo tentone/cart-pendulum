@@ -1,8 +1,10 @@
+import coffeescript from 'rollup-plugin-coffee-script';
 import serve from "rollup-plugin-serve";
 
 export default {
 	input: "source/main.js",
 	plugins: [
+		coffeescript(),
 		serve({
 			open: true,
 			contentBase: '.',
