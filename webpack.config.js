@@ -8,9 +8,12 @@ module.exports = [{
 	devtool: "inline-source-map",
 	output: {
 		library: 'CP',
-    libraryTarget: 'umd',
+		libraryTarget: 'umd',
 		path: Path.resolve(__dirname, 'build'),
 		filename: 'cart-pendulum.js',
+	},
+	resolve: {
+		extensions: [".js", ".coffee"]
 	},
 	module: {
 		rules: [

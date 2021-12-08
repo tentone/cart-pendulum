@@ -1,4 +1,4 @@
-import {Vector2} from "./Vector2.coffe"
+import {Vector2} from "./Vector2"
 
 # Line between two points (origin to end).
 #
@@ -13,7 +13,7 @@ class Line
     # 
     # @returns {number} Size of the line.
     size: () ->
-        Math.sqrt(Math.pow(@origin.x - @end.x, 2) + Math.pow(@origin.y - @end.y, 2))
+        return Math.sqrt(Math.pow(@origin.x - @end.x, 2) + Math.pow(@origin.y - @end.y, 2))
 
     # Draw the line into a canvas 2D context.
     # 
