@@ -7,7 +7,7 @@ document.body.onresize = function()
 	canvas.height = window.innerHeight;
 };
 
-var model = new CP.LinearModel;
+var model = new CP.NeuralModel();
 
 var run = document.getElementById("run");
 run.onclick = function()
@@ -22,8 +22,6 @@ var train = document.getElementById("train");
 train.onclick = function()
 {
 	clearTerminal();
-
-	model = CP.LinearModelTrain.trainIterative(epochs, iterations, runs);
 };
 
 function clearTerminal()
