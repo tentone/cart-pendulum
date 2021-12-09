@@ -19,7 +19,13 @@ class DataRecorder
 		@bestData = []
 
 
-	# End 
+	# End recording session the score will be compared with previous best session to decide what data to keep.
+	end: (score) ->
+		if @active
+			if score > @bestScore
+				@bestData = @data
+				@bestScore = score
+			@data = []
 
 	# Record state of a simulation and the control action state
 	record: (cart) ->
