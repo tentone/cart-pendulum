@@ -24,7 +24,7 @@ class LinearModelTrain
 		console.log(" - Training process starting. ", {epochs, iterations, runs})
 
 		bestModel = new LinearModel()
-		bestScore = Training.testModel(bestModel, runs, scoreLimit)
+		bestScore = LinearModelTrain.testModel(bestModel, runs, scoreLimit)
 
 		jitter = 1.0
 		
@@ -42,7 +42,7 @@ class LinearModelTrain
 				model = bestModel.clone()
 				model.jitter(jitter)
 				
-				points = Training.testModel(model, runs, scoreLimit)
+				points = LinearModelTrain.testModel(model, runs, scoreLimit)
 				if points > epochScore
 					epochModel = model
 					epochScore = points
@@ -85,7 +85,7 @@ class LinearModelTrain
 			model = new LinearModel()
 			model.jitter(jitter)
 			
-			score = Training.testModel(model, runs, scoreLimit)
+			score = LinearModelTrain.testModel(model, runs, scoreLimit)
 			if score > bestScore
 				bestModel = model
 				bestScore = score
