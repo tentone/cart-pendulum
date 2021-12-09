@@ -7,7 +7,7 @@ import {Utils} from "./Utils"
 class DataRecorder
 	constructor: () ->
 		# Active state of the data recorder
-		@active = false
+		@active = true
 		
 		# Current data being recorded
 		@data = []
@@ -18,6 +18,10 @@ class DataRecorder
 		# Best dataset recorded util now
 		@bestData = []
 
+
+	# Get the best data obtained from the recorder.
+	getData: () ->
+		return @bestData
 
 	# End recording session the score will be compared with previous best session to decide what data to keep.
 	end: (score) ->
@@ -42,4 +46,4 @@ class DataRecorder
 				}
 			})
 
-	
+export {DataRecorder}

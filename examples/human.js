@@ -38,43 +38,22 @@ document.body.onkeyup = function(event)
 	}
 };
 
-var data = [];
-var bestData = [];
-var bestScore = 0;
-var recordData = true;
+var recorder = new CP.DataRecorder();
 
 CP.Runner.runGraphical(canvas, function(cart)
 {
 	cart.leftPressed = left;
 	cart.rightPressed = right;
 
-	if(recordData) {
-		data.push({
-			input: {
-				velocity: cart.velocity,
-				angle: cart.angle,
-				position: cart.position
-			},
-			output: {
-				left: cart.leftPressed,
-				right: cart.rightPressed
-			}
-		});
-	}
+	recorder.record(cart);
 },
 function(cart, score)
 {
-	if (recordData) {
-		if (score > bestScore) {
-			bestData = data;
-			bestScore = score;
-		}
-		data = [];
-	}
+	recorder.end(score);
 });
 
 var exp = document.getElementById("export");
 exp.onclick = function()
 {
-	CP.Utils.writeFile(bestData, "data.json");
+	CP.Utils.writeFile(recorder.getData(), "data.json");
 };

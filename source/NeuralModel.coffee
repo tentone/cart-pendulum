@@ -10,6 +10,9 @@ class NeuralModel
 			leakyReluAlpha: 0.01, # Supported for activation type 'leaky-relu'
 		}
 
+		# TODO <REMOVE>
+		console.log(brain);
+
 		@net = new brain.NeuralNetworkGPU(@config)
 
 	# Train the model using input and output samples.
@@ -18,6 +21,7 @@ class NeuralModel
 	train: (data) ->
 		@net.train(data)
 
+	# Control the simulation using prediction provided by the neural network.
 	control: (cart) ->
 		input = {
 			velocity: @cart.velocity,
@@ -26,6 +30,9 @@ class NeuralModel
 		}
 
 		output = @net.run(input)
+
+		# TODO <REMOVE>
+		console.log(input, output)
 
 		cart.leftPressed = output.left
 		cart.rightPressed = output.right

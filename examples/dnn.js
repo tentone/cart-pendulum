@@ -20,8 +20,14 @@ run.onclick = function()
 
 var train = document.getElementById("train");
 train.onclick = function()
-{
+{	
+	CP.Utils.readFile(function(data) {
+		data = JSON.parse(dat);
+
+		console.log(data);
+	});
 	clearTerminal();
+
 };
 
 function clearTerminal()
