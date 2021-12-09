@@ -1,4 +1,4 @@
-import brain from 'brain.js/dist/brain-browser.js';
+import * as brain from 'brain.js/dist/brain-browser.js';
 
 # Neural network based model using brain.js
 class NeuralModel
@@ -10,31 +10,32 @@ class NeuralModel
 			leakyReluAlpha: 0.01, # Supported for activation type 'leaky-relu'
 		}
 
-		# TODO <REMOVE>
-		console.log(brain);
+		@trainConfig = {
+			iterations: 20000, # Maximum times to iterate the training data
+			errorThresh: 0.005, # Acceptable error percentage from training data
+			learningRate: 0.3, # Scales with delta to effect training rate
+			momentum: 0.1, # Scales with next layer's change value
+			timeout: Infinity, # Max number of milliseconds to train for
+		}
 
-		@net = new brain.NeuralNetworkGPU(@config)
+		@net = new brain.NeuralNetwork(@config) # NeuralNetworkGPU
 
 	# Train the model using input and output samples.
 	#
-	# Expects data using the format {input: {velocity, angle, position}, output: {left, right}}.
+	# Expects data using the format {input: [velocity, angle, position], output: [left, right]}.
 	train: (data) ->
-		@net.train(data)
+		@net.train(data, @trainConfig);
 
 	# Control the simulation using prediction provided by the neural network.
 	control: (cart) ->
-		input = {
-			velocity: @cart.velocity,
-			angle: @cart.angle,
-			position: @cart.position
-		}
+		input = [cart.velocity, cart.angle, cart.position]
 
 		output = @net.run(input)
 
 		# TODO <REMOVE>
 		console.log(input, output)
 
-		cart.leftPressed = output.left
-		cart.rightPressed = output.right
+		cart.leftPressed = output[0]
+		cart.rightPressed = output[1]
 
 export {NeuralModel}

@@ -22,9 +22,9 @@ var train = document.getElementById("train");
 train.onclick = function()
 {	
 	CP.Utils.readFile(function(data) {
-		data = JSON.parse(dat);
+		data = JSON.parse(data);
 
-		console.log(data);
+		model.train(data);
 	});
 	clearTerminal();
 

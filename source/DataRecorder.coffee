@@ -35,15 +35,8 @@ class DataRecorder
 	record: (cart) ->
 		if @active
 			@data.push({
-				input: {
-					velocity: cart.velocity,
-					angle: cart.angle,
-					position: cart.position
-				},
-				output: {
-					left: cart.leftPressed,
-					right: cart.rightPressed
-				}
+				input: [cart.velocity, cart.angle, cart.position]
+				output: [cart.leftPressed, cart.rightPressed]
 			})
 
 export {DataRecorder}
