@@ -4,7 +4,7 @@ import {LinearModel} from "./LinearModel"
 # Methods for training of the cart model.
 #
 # Training produces a linear model of the cart, that can be used to control the simulation.
-class Training
+class LinearModelTrain
 	# Train the model of the cart iterativelly.
 	# 
 	# Uses a seasonal training approach for wich many epochs are executed and the best from each epoch is selected as based for the next.
@@ -120,4 +120,4 @@ class Training
 		
 		return score / runs
 
-export {Training}
+export {LinearModelTrain}

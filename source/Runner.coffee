@@ -37,7 +37,7 @@ class Runner
     # @param [Element] canvas Canvas element where the interface is drawn.
     # @param [Function] onIteration Method called every iteration of the simulation to control the cart.
     # @param [Function] onGameOver Method called when the simulation ends.
-    runGraphical: (canvas, onIteration, onGameOver) ->
+    @runGraphical: (canvas, onIteration, onGameOver) ->
         cart = new Cart()
         context = canvas.getContext("2d")
         maxPoints = 0

@@ -27,7 +27,7 @@ trainIterative.onclick = function()
 	var iterations = Number.parseInt(document.getElementById("iterations").value);
 	var runs = Number.parseInt(document.getElementById("runs").value);
 
-	model = CP.Training.trainIterative(epochs, iterations, runs);
+	model = CP.LinearModelTrain.trainIterative(epochs, iterations, runs);
 };
 
 var trainRandomized = document.getElementById("trainRandomized");
