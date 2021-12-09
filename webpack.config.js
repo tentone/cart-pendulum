@@ -1,11 +1,12 @@
-const Path = require("path");
+const Path = require('path');
+const Html = require('html-webpack-plugin');
 
 module.exports = [{
 	entry: './source/main.coffee',
-	mode: "production",
+	mode: 'production',
 	optimization: {minimize: true},
-	target: "web",
-	devtool: "inline-source-map",
+	target: 'web',
+	devtool: 'inline-source-map',
 	output: {
 		library: 'CP',
 		libraryTarget: 'umd',
@@ -13,13 +14,13 @@ module.exports = [{
 		filename: 'cart-pendulum.js',
 	},
 	resolve: {
-		extensions: [".js", ".coffee"]
+		extensions: ['.js', '.coffee']
 	},
 	module: {
 		rules: [
 			{
 				test: /\.coffee$/,
-				loader: "coffee-loader",
+				loader: 'coffee-loader',
 			},
 		],
 	},

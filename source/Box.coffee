@@ -1,4 +1,4 @@
-import {Vector2} from "./Vector2"
+import {Vector2} from './Vector2'
 
 # Box is represented from a minimum and a maximum points.
 class Box

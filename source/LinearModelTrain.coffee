@@ -1,5 +1,5 @@
-import {Runner} from "./Runner"
-import {LinearModel} from "./LinearModel"
+import {Runner} from './Runner'
+import {LinearModel} from './LinearModel'
 
 # Methods for training of the cart model.
 #
@@ -21,7 +21,7 @@ class LinearModelTrain
 		# If the model reaches this level of performance the training is stopped.
 		scoreLimit = if scoreLimit != undefined then scoreLimit else 2000.0
 
-		console.log(" - Training process starting. ", {epochs, iterations, runs})
+		console.log(' - Training process starting. ', {epochs, iterations, runs})
 
 		bestModel = new LinearModel()
 		bestScore = LinearModelTrain.testModel(bestModel, runs, scoreLimit)
@@ -31,7 +31,7 @@ class LinearModelTrain
 		# Epoch
 		e = 0
 		while e < epochs
-			console.log(" - Running epoch ", e, " score ", bestScore)
+			console.log(' - Running epoch ', e, ' score ', bestScore)
 
 			epochModel = null
 			epochScore = 0
@@ -57,7 +57,7 @@ class LinearModelTrain
 				break
 			e++
 
-		console.log(" - Training finished with score ", bestScore, " model ", bestModel)
+		console.log(' - Training finished with score ', bestScore, ' model ', bestModel)
 		return bestModel
 
 	# Fully randomized training, test many parameters and select the best from all.
@@ -72,7 +72,7 @@ class LinearModelTrain
 		# If the model reaches this level of performance the training is stopped.
 		scoreLimit = if scoreLimit != undefined then scoreLimit else 2000.0
 
-		console.log(" - Training process starting. ", {iterations, runs})
+		console.log(' - Training process starting. ', {iterations, runs})
 
 		bestModel = null
 		bestScore = 0
@@ -90,14 +90,14 @@ class LinearModelTrain
 				bestModel = model
 				bestScore = score
 
-			console.log(" - Iteration ", i, " score ", bestScore)
+			console.log(' - Iteration ', i, ' score ', bestScore)
 
 			if bestScore >= scoreLimit
 				break
 			
 			i++
 
-		console.log(" - Training finished with score ", bestScore, " model ", bestModel)
+		console.log(' - Training finished with score ', bestScore, ' model ', bestModel)
 
 		return bestModel
 

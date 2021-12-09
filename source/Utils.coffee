@@ -27,9 +27,9 @@ class Utils
 
 	# Choose file and read data from it.
 	@readFile: (onLoad) ->
-		chooser = document.createElement("input")
-		chooser.type = "file"
-		chooser.style.display = "none"
+		chooser = document.createElement('input')
+		chooser.type = 'file'
+		chooser.style.display = 'none'
 		document.body.appendChild(chooser)
 
 		chooser.onchange = () ->

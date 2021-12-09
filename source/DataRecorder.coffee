@@ -1,4 +1,4 @@
-import {Utils} from "./Utils"
+import {Utils} from './Utils'
 
 
 # Data recorder can be used to record data from a game session.

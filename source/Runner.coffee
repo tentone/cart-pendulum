@@ -1,4 +1,4 @@
-import {CartSimulation} from "./CartSimulation"
+import {CartSimulation} from './CartSimulation'
 
 # Methods to run the simulation in headless mode (terminal only), or attached to a canvas (Graphical).
 class Runner
@@ -26,7 +26,7 @@ class Runner
 		
 		if logPerformance
 			end = performance.now()
-			console.log(" - Simulation ended with " + cart.score + " points, took " + (end - time) + ".")
+			console.log(' - Simulation ended with ' + cart.score + ' points, took ' + (end - time) + '.')
 
 		return cart.score
 
@@ -39,7 +39,7 @@ class Runner
 	# @param [Function] onGameOver Method called when the simulation ends.
 	@runGraphical: (canvas, onIteration, onGameOver) ->
 		cart = new CartSimulation()
-		context = canvas.getContext("2d")
+		context = canvas.getContext('2d')
 		maxPoints = 0
 
 		update = () ->
@@ -62,10 +62,10 @@ class Runner
 			context.clearRect(0, 0, canvas.width, canvas.height)
 			
 			# Text in the canvas
-			context.font = "15px Arial"
-			context.textAlign = "left"
-			context.fillText("Points: " + cart.score, 10, 20)
-			context.fillText("Max: " + maxPoints, 10, 40)
+			context.font = '15px Arial'
+			context.textAlign = 'left'
+			context.fillText('Points: ' + cart.score, 10, 20)
+			context.fillText('Max: ' + maxPoints, 10, 40)
 
 			# Transform
 			context.transform(1, 0, 0, -1, 0, canvas.height)

@@ -9,7 +9,8 @@
 		"docs": "codo source/*"
 	},
 	"dependencies": {
-		"brain.js": "~2.0.0-beta.4"
+		"brain.js": "~2.0.0-beta.4",
+		"html-webpack-plugin": "^5.5.0"
 	},
 	"devDependencies": {
 		"codo": "^2.1.2",

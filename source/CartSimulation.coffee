@@ -1,6 +1,6 @@
-import {Vector2} from "./Vector2"
-import {Line} from "./Line"
-import {Box} from "./Box"
+import {Vector2} from './Vector2'
+import {Line} from './Line'
+import {Box} from './Box'
 
 # Cart simulation object, that contains the entire logic for the simulation.
 # 
@@ -58,7 +58,7 @@ class CartSimulation
 		context.translate(@position, 0)
 
 		# Guidelines
-		context.strokeStyle = "#FF0000"
+		context.strokeStyle = '#FF0000'
 		context.lineWidth = 1
 		context.beginPath()
 		context.moveTo(Math.sin(-@limitAngle) * 100, Math.cos(-@limitAngle) * 100)
@@ -66,7 +66,7 @@ class CartSimulation
 		context.lineTo(Math.sin(@limitAngle) * 100, Math.cos(@limitAngle) *  100)
 		context.stroke()
 
-		context.strokeStyle = "#000000"
+		context.strokeStyle = '#000000'
 		context.lineWidth = 3
 		@pendulum.end.x = Math.sin(@angle) * 100
 		@pendulum.end.y = Math.cos(@angle) * 100

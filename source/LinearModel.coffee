@@ -1,4 +1,4 @@
-import {LinearRegression} from "./LinearRegression"
+import {LinearRegression} from './LinearRegression'
 
 # Model to control the cart, its parameters can be set and used to control the cart.
 # 
