@@ -35,7 +35,7 @@ class NeuralModel
 		# TODO <REMOVE>
 		console.log(input, output)
 
-		cart.leftPressed = output[0]
-		cart.rightPressed = output[1]
+		cart.leftPressed = output[0] > 0.5
+		cart.rightPressed = output[1] > 0.5
 
 export {NeuralModel}
