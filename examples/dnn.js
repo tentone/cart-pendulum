@@ -18,27 +18,12 @@ run.onclick = function()
 	});
 };
 
-var train = document.getElementById("trainIterative");
+var train = document.getElementById("train");
 train.onclick = function()
 {
 	clearTerminal();
 
-	var epochs = Number.parseInt(document.getElementById("epochs").value);
-	var iterations = Number.parseInt(document.getElementById("iterations").value);
-	var runs = Number.parseInt(document.getElementById("runs").value);
-
 	model = CP.LinearModelTrain.trainIterative(epochs, iterations, runs);
-};
-
-var trainRandomized = document.getElementById("trainRandomized");
-trainRandomized.onclick = function()
-{
-	clearTerminal();
-
-	var iterations = Number.parseInt(document.getElementById("iterations").value);
-	var runs = Number.parseInt(document.getElementById("runs").value);
-
-	model = Training.trainRandom(iterations, runs);
 };
 
 function clearTerminal()
