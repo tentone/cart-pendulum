@@ -6,6 +6,7 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "webpack --config webpack.config.js",
+		"examples": "coffee -c examples/bot.coffee examples/linear.coffee examples/human.coffee examples/dnn.coffee",
 		"docs": "codo source/*"
 	},
 	"dependencies": {

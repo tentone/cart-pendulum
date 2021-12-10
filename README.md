@@ -53,19 +53,18 @@
 
 - Now that we got the basics right lets try and train the system using a more complex neural model with [brain.js](https://brain.js.org/)
 - Our inputs will be the same `position`, `velocity` and `angle` and the outputs will be `right` and `left`.
-- Contraty to the linear model where we test combinations of parameters to find the best configuration.
+- Contrary to the linear model where we test combinations of parameters to find the best configuration.
 - For the neural-network we need to provide datasets of game variables and decisions for training.
 - These datasets can be recorded from sessions from human players or even for example from the linear model.
 
 ```json
 [
-	{
-		"input": {"velocity": 1.246, "angle": -0.0163, "position": 3.17},
-		"output": {"left": false, "right": true}
-	},
-	...
+	{"input": [0.4562460470209,-0.0022812302351045,0.456246047020],
+	 "output": [0.0,1.0]}, ...
 ]
 ```
+
+- After training a visualization of the network can be generated where we can observe the inputs their weights and the outputs produced.
 
 
 
