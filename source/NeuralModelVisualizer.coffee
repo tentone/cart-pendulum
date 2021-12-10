@@ -1,10 +1,10 @@
 class NeuralModelVisualizer
-	constructor: (net, htmlParentNode) ->
+	constructor: (net, container) ->
 		@net = net
 		@inputLayer = @net.inputLookup
 		@outputLayer = @net.outputs
 		@sizes = @net.sizes
-		@container = htmlParentNode
+		@container = container
 		@canvas = null
 		@context = null
 		@colors =
@@ -21,8 +21,8 @@ class NeuralModelVisualizer
 		@canvas.width = 400
 		@canvas.height = 400
 		@canvas.style.background = @colors.background
-		if typeof @htmlParentNode == 'object'
-			@htmlParentNode.appendChild @canvas
+		if typeof @container == 'object'
+			@container.appendChild @canvas
 			@context = @canvas.getContext('2d')
 			return true
 		false
@@ -121,3 +121,5 @@ class NeuralModelVisualizer
 
 		return
 
+
+export {NeuralModelVisualizer};
