@@ -19,9 +19,9 @@
     canvas.height = window.innerHeight;
   };
 
-  model = new (CP.LinearModel)();
+  model = new CP.LinearModel();
 
-  recorder = new (CP.DataRecorder)();
+  recorder = new CP.DataRecorder();
 
   run = document.getElementById('run');
 
@@ -58,7 +58,7 @@
     clearTerminal();
     iterations = Number.parseInt(document.getElementById('iterations').value);
     runs = Number.parseInt(document.getElementById('runs').value);
-    model = Training.trainRandom(iterations, runs);
+    model = CP.LinearModelTrain.trainRandom(iterations, runs);
   };
 
   clear = document.getElementById('clear');

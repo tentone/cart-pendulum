@@ -7,7 +7,7 @@ document.body.onresize = ->
 	canvas.height = window.innerHeight
 	return
 
-model = new (CP.NeuralModel)
+model = new CP.NeuralModel()
 run = document.getElementById('run')
 
 run.onclick = ->

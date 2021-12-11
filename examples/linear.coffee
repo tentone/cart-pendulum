@@ -13,8 +13,8 @@ document.body.onresize = ->
 	canvas.height = window.innerHeight
 	return
 
-model = new (CP.LinearModel)
-recorder = new (CP.DataRecorder)
+model = new CP.LinearModel()
+recorder = new CP.DataRecorder()
 run = document.getElementById('run')
 
 run.onclick = ->
@@ -49,7 +49,7 @@ trainRandomized.onclick = ->
 	clearTerminal()
 	iterations = Number.parseInt(document.getElementById('iterations').value)
 	runs = Number.parseInt(document.getElementById('runs').value)
-	model = Training.trainRandom(iterations, runs)
+	model = CP.LinearModelTrain.trainRandom(iterations, runs)
 	return
 
 clear = document.getElementById('clear')

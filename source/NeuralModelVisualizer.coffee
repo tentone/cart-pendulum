@@ -16,7 +16,7 @@ class NeuralModelVisualizer
 			forwardArrow: 'black'
 			backArrow: 'violet'
 
-	createCanvas = ->
+	createCanvas: () ->
 		@canvas = document.createElement('canvas')
 		@canvas.width = 400
 		@canvas.height = 400
@@ -27,7 +27,7 @@ class NeuralModelVisualizer
 			return true
 		false
 
-	drawNode = (x, y, nodeRadius) ->
+	drawNode: (x, y, nodeRadius) ->
 		@context.beginPath()
 		@context.strokeStyle = @colors.nodeOutline
 		@context.lineWidth = 5
@@ -38,7 +38,7 @@ class NeuralModelVisualizer
 		@context.closePath()
 		return
 
-	drawArrow = (node1, node2, weight) ->
+	drawArrow: (node1, node2, weight) ->
 		x1 = node1.x
 		y1 = node1.y
 		x2 = node2.x
@@ -53,7 +53,7 @@ class NeuralModelVisualizer
 		@context.closePath()
 		return
 
-	getNode = (layerId, nodeId) ->
+	getNode: (layerId, nodeId) ->
 		maxLayerSize = 0
 		i = 0
 		while i < @sizes.length
@@ -63,11 +63,12 @@ class NeuralModelVisualizer
 		
 		stepX = Math.round(@canvas.width / @sizes.length)
 		stepY = Math.round(@canvas.height / (maxLayerSize + 1))
+
 		nodeRadius = 15
 		if nodeRadius < stepY
 			nodeRadius = stepY * 0.25
 		
-		#TODO: these two (2 and 1) are some strange heuristics, do something better
+		# These two (2 and 1) are some strange heuristics, do something better
 		offsetX = stepX - (nodeRadius * 2)
 		offsetY = stepY - (nodeRadius * 1)
 		
@@ -85,7 +86,7 @@ class NeuralModelVisualizer
 				node++
 		return false
 
-	render = ->
+	render: () ->
 		console.log @net
 		console.log @net.weights
 		if @canvas == null or @context == null

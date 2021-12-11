@@ -13,7 +13,7 @@
     canvas.height = window.innerHeight;
   };
 
-  model = new (CP.NeuralModel)();
+  model = new CP.NeuralModel();
 
   run = document.getElementById('run');
 
