@@ -28,10 +28,10 @@ train.onclick = ->
 			height: 350
 			radius: 6
 			line: {
-				width: 1.0
+				width: 2.0
 				color: '#000000'
 			}
-			fontSize: '18px',
+			fontSize: '12px',
 			hidden: {
 				color: "#BB0000BB"
 			}
@@ -40,7 +40,7 @@ train.onclick = ->
 			}
 			inputs: {
 				color: '#00BB00BB'
-				labels: ['Speed', 'Angle', 'Position']
+				labels: ['Position', 'Velocity', 'Angle']
 			}
 		}
 		
