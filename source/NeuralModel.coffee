@@ -1,24 +1,37 @@
 import * as brain from 'brain.js/dist/brain-browser.js';
 
-# Neural network based model using brain.js
+# Neural network based model using brain.js.
+#
+# Can learn how to play the game and automatically control it.
+#
+# The network can be configured with different activation functions (https://www.wikiwand.com/en/Activation_function).
 class NeuralModel
 	constructor: () ->
 		@config = {
-			binaryThresh: 0.5,
-			hiddenLayers: [3], # Array of ints for the sizes of the hidden layers in the network
-			activation: 'sigmoid', # ['sigmoid', 'relu', 'leaky-relu', 'tanh'],
-			leakyReluAlpha: 0.01, # Supported for activation type 'leaky-relu'
+			# Threshold to apply for binary classification
+			binaryThresh: 0.5
+			# Sizes of the hidden layers in the network
+			hiddenLayers: [10, 6]
+			 # ['sigmoid', 'relu', 'leaky-relu', 'tanh']
+			activation: 'relu'
+			# Leaky ReLUs allow a small, positive gradient when the unit is not active
+			leakyReluAlpha: 0.01
 		}
 
 		@trainConfig = {
-			iterations: 20000, # Maximum times to iterate the training data
-			errorThresh: 0.005, # Acceptable error percentage from training data
-			learningRate: 0.3, # Scales with delta to effect training rate
-			momentum: 0.1, # Scales with next layer's change value
-			timeout: Infinity, # Max number of milliseconds to train for
+			# Maximum times to iterate the training data
+			iterations: 20000
+			# Acceptable error percentage from training data
+			errorThresh: 0.005
+			# Scales with delta to effect training rate
+			learningRate: 0.3
+			# Scales with next layer's change value
+			momentum: 0.1
+			# Max number of milliseconds to train for
+			timeout: Infinity
 		}
 
-		@net = new brain.NeuralNetwork(@config) # NeuralNetworkGPU
+		@net = new brain.NeuralNetwork(@config)
 
 		console.log(brain, @net)
 
@@ -28,13 +41,17 @@ class NeuralModel
 	train: (data) ->
 		@net.train(data, @trainConfig);
 
+	# Create representation of the network.
+	#
+	# @param [object] option Options of the visualization generated.
+	toSVG: (options) ->
+		return brain.utilities.toSVG(@net.toJSON(), options)
+
 	# Control the simulation using prediction provided by the neural network.
 	control: (cart) ->
 		input = [cart.velocity, cart.angle, cart.position]
 
 		output = @net.run(input)
-
-		console.log(output)
 
 		cart.leftPressed = output[0] > 0.5
 		cart.rightPressed = output[1] > 0.5

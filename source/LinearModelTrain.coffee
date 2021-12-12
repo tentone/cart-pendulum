@@ -49,6 +49,7 @@ class LinearModelTrain
 				
 				i++
 
+			# Epoch has improved score
 			if epochScore >= bestScore
 				bestModel = epochModel
 				bestScore = epochScore

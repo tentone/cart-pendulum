@@ -66,7 +66,7 @@
 
 - After training a visualization of the network can be generated where we can observe the inputs their weights and the outputs produced.
 
-
+<img src="https://tentone.github.io/cart-pendulum/readme/neural-network.png" width="600">
 
 
 
