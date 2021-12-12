@@ -1,12 +1,19 @@
+# Neural model visualizer can create representations of the neural network in canvas.
+#
+# Usefull to visualize the structure of the network produced by brain.js 
 class NeuralModelVisualizer
+	# @param [object] net Neural network to visualize.
+	# @param [Element] container DOM element to place a canvas.
 	constructor: (net, container) ->
 		@net = net
 		@inputLayer = @net.inputLookup
 		@outputLayer = @net.outputs
 		@sizes = @net.sizes
+		
 		@container = container
 		@canvas = null
 		@context = null
+
 		@colors =
 			background: 'white'
 			nodeOutline: 'black'
@@ -16,6 +23,9 @@ class NeuralModelVisualizer
 			forwardArrow: 'black'
 			backArrow: 'violet'
 
+	# Create canvas element and attach it to the container.
+	#
+	# The container has to be destroyed manually when it is no longer required.
 	createCanvas: () ->
 		@canvas = document.createElement('canvas')
 		@canvas.width = 400
@@ -25,8 +35,13 @@ class NeuralModelVisualizer
 			@container.appendChild @canvas
 			@context = @canvas.getContext('2d')
 			return true
-		false
+		return false
 
+	# Draw a network node to a position.
+	#
+	# @param [number] x X coordinate of the node.
+	# @param [number] y Y coordinate of the node.
+	# @param [number] radius Radius of the circle.
 	drawNode: (x, y, nodeRadius) ->
 		@context.beginPath()
 		@context.strokeStyle = @colors.nodeOutline
@@ -38,6 +53,11 @@ class NeuralModelVisualizer
 		@context.closePath()
 		return
 
+	# Draw arrow between two nodes
+	#
+	# @param [object] node1 Origin node
+	# @param [object] node2 Destination node.
+	# @param [number] weight Weight of the connection between the nodes.
 	drawArrow: (node1, node2, weight) ->
 		x1 = node1.x
 		y1 = node1.y
@@ -53,6 +73,10 @@ class NeuralModelVisualizer
 		@context.closePath()
 		return
 
+	# Get node from the neural network
+	#
+	# @param [string] layerId ID of the network layer.
+	# @param [string] nodeId ID of the layer node.
 	getNode: (layerId, nodeId) ->
 		maxLayerSize = 0
 		i = 0
@@ -86,15 +110,18 @@ class NeuralModelVisualizer
 				node++
 		return false
 
+	# Render the network to canvas based on its current status.
+	#
+	# Will iterate over the network structure and draw its layers in collumns
 	render: () ->
-		console.log @net
-		console.log @net.weights
+		console.log(@net)
+
 		if @canvas == null or @context == null
 			@createCanvas()
 
 		
-		console.log @canvas
-		console.log @context
+		console.log(@canvas)
+		console.log(@context)
 
 		#We draw arrows first
 		for layerIndex of @sizes
