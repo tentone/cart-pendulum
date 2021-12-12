@@ -14,10 +14,13 @@ class CartSimulation
 		@boxHalfSize = 50
 
 		# Acceleration used for movement of the cart on key press.
-		@moveAcceleration = 0.2
+		@moveAcceleration = 2.0
 
 		# Limit angle that the pendulum can reach.
 		@limitAngle = 0.7
+
+		# Friction applyed to the velocity of the cart
+		@friction = 0.01
 
 		# Box that represents the cart.
 		@cart = new Box(new Vector2(-@boxHalfSize, -30), new Vector2(@boxHalfSize, 30))
@@ -42,7 +45,6 @@ class CartSimulation
 		@leftPressed = false
 		@rightPressed = false
 		@acceleration = 0.0
-		@friction = 0.99
 		@velocity = (Math.random() *  2 - 1.0)
 		@velocity += @velocity < 0 ? -0.2 : 0.2
 		@angle = 0
@@ -77,7 +79,9 @@ class CartSimulation
 	# Update the logic of the simulation.
 	# 
 	# The cart moves according to its velocity, the stick is used based on velocity and its current angle (gravity).
-	update: () ->
+	#
+	# @param [number] delta Time elapsed since last frame in seconds.
+	update: (delta) ->
 		# If game over return
 		if @gameOver
 			return
@@ -91,12 +95,18 @@ class CartSimulation
 			@acceleration = 0.0
 
 		# Update physics
-		@velocity += @acceleration
-		@velocity *= @friction
-		@position += @velocity
+		@velocity += @acceleration * delta
+		@velocity *= 1 - (@friction * delta)
 
-		@angle += (@angle * 3e-2) + (-@velocity * 5e-3)
-		@score++
+		@position += @velocity * delta
+
+		pendulumGravity = 2.0
+		pendulumMomentum = 0.5
+
+		@angle += (@angle * pendulumGravity - @velocity * pendulumMomentum) * delta
+		@score += delta
+
+		console.log(delta, @velocity, @angle, @score, @position)
 
 		# If the angle of the pendulum drop bellow the minium end the game
 		if @angle > @limitAngle or @angle < -@limitAngle

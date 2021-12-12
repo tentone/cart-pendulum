@@ -7,22 +7,23 @@ class Runner
 	# The simulation is run until the stick is dropped off.
 	# 
 	# @param [Function] logicCallback Callback method to process the cart logic.
-	# @param [number] pointLimit How much time to simulate in the limit (prevent infinite run).
+	# @param [number] scoreLimit How much time to simulate in the limit (prevent infinite run).
 	# @param [boolean] logPerformance If true console logs with performance of the simulation are printed out.
 	# @returns [number] Returns the ammount of points accumulated during the simulation.
-	@runHeadless: (logicCallback, pointLimit, logPerformance) ->
-		pointLimit = if pointLimit != undefined then pointLimit else Infinity
+	@runHeadless: (logicCallback, scoreLimit, logPerformance) ->
+		scoreLimit = if scoreLimit != undefined then scoreLimit else Infinity
 
 		cart = new CartSimulation()
-		
+		frequency = 1 / 60
+
 		if logPerformance
 			time = performance.now()
 
-		while !cart.gameOver and cart.score < pointLimit
+		while !cart.gameOver and cart.score < scoreLimit
 			if logicCallback != undefined
 				logicCallback(cart)
 			
-			cart.update()
+			cart.update(frequency)
 		
 		if logPerformance
 			end = performance.now()
@@ -40,20 +41,29 @@ class Runner
 	@runGraphical: (canvas, onIteration, onGameOver) ->
 		cart = new CartSimulation()
 		context = canvas.getContext('2d')
-		maxPoints = 0
+		maxScore = 0
 
-		update = () ->
+		# Time of the last frame in ms
+		last = 0;
+
+		update = (time) ->
+			if time
+				delta = (time - last) / 1000.0
+				last = time
+			else
+				delta = 0
+
 			if onIteration != undefined
 				onIteration(cart)
 
-			cart.update()
+			cart.update(delta)
 
 			if cart.gameOver
 				if onGameOver != undefined
-					onGameOver(cart, maxPoints)
+					onGameOver(cart, maxScore)
 
-				if cart.score > maxPoints 
-					maxPoints = cart.score
+				if cart.score > maxScore 
+					maxScore = cart.score
 
 				cart.reset()
 			
@@ -65,7 +75,7 @@ class Runner
 			context.font = '15px Arial'
 			context.textAlign = 'left'
 			context.fillText('Points: ' + cart.score, 10, 20)
-			context.fillText('Max: ' + maxPoints, 10, 40)
+			context.fillText('Max: ' + maxScore, 10, 40)
 
 			# Transform
 			context.transform(1, 0, 0, -1, 0, canvas.height)

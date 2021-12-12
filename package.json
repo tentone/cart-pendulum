@@ -5,7 +5,8 @@
 	"author": "Tentone",
 	"license": "MIT",
 	"scripts": {
-		"start": "npm run build &&  http-serve examples/dnn -o",
+		"serve": "http-server . -o /examples/dnn.html",
+		"start": "npm run build && npm run serve",
 		"build": "webpack --config webpack.config.js && npm run examples",
 		"examples": "coffee -c examples/bot.coffee examples/linear.coffee examples/human.coffee examples/dnn.coffee",
 		"docs": "codo source/*"
@@ -15,7 +16,7 @@
 		"html-webpack-plugin": "^5.5.0"
 	},
 	"devDependencies": {
-		"http-serve": "1.0.1",
+		"http-server": "14.0.0",
 		"codo": "^2.1.2",
 		"coffee-loader": "^3.0.0",
 		"coffeescript": "~2.6.1",

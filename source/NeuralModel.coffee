@@ -20,6 +20,8 @@ class NeuralModel
 
 		@net = new brain.NeuralNetwork(@config) # NeuralNetworkGPU
 
+		console.log(brain, @net)
+
 	# Train the model using input and output samples.
 	#
 	# Expects data using the format {input: [velocity, angle, position], output: [left, right]}.

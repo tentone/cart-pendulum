@@ -16,7 +16,7 @@ class NeuralModelVisualizer
 		@container = container
 		@canvas = null
 		@context = null
-
+		
 		@colors = {
 			nodeOutline: 'black'
 			inputLayerNode: 'blue'
@@ -33,10 +33,12 @@ class NeuralModelVisualizer
 		@canvas = document.createElement('canvas')
 		@canvas.width = @width
 		@canvas.height = @height
+
 		if typeof @container == 'object'
 			@container.appendChild @canvas
 			@context = @canvas.getContext('2d')
 			return true
+		
 		return false
 
 	# Draw a network node to a position.
@@ -48,7 +50,7 @@ class NeuralModelVisualizer
 		@context.beginPath()
 		@context.strokeStyle = @colors.nodeOutline
 		@context.lineWidth = 5
-		@context.arc x, y, nodeRadius, 0, 2 * Math.PI
+		@context.arc(x, y, nodeRadius, 0, 2 * Math.PI)
 		@context.stroke()
 		@context.fillStyle = @colors.hiddenLayerNode
 		@context.fill()
@@ -65,12 +67,15 @@ class NeuralModelVisualizer
 		y1 = node1.y
 		x2 = node2.x
 		y2 = node2.y
+
 		@context.beginPath()
 		@context.lineWidth = 1
+
 		@context.fillStyle = 'rgba(0,0,0, ' + weight + ')'
 		@context.strokeStyle = 'rgba(0,0,0, ' + weight + ')'
-		@context.moveTo x1, y1
-		@context.lineTo x2, y2
+
+		@context.moveTo(x1, y1)
+		@context.lineTo(x2, y2)
 		@context.stroke()
 		@context.closePath()
 		return
@@ -110,7 +115,8 @@ class NeuralModelVisualizer
 						radius: nodeRadius
 					}
 				node++
-		return false
+		
+		return null
 
 	# Render the network to canvas based on its current status.
 	#
@@ -128,7 +134,7 @@ class NeuralModelVisualizer
 				nodeIndex2 = 0
 				while nodeIndex2 < @sizes[layerIndex2]
 					node2 = @getNode(layerIndex2, nodeIndex2)
-					@drawArrow node, node2, Math.abs(@net.weights[layerIndex2][nodeIndex2][nodeIndex]) / 2
+					@drawArrow(node, node2, Math.abs(@net.weights[layerIndex2][nodeIndex2][nodeIndex]) / 2)
 					nodeIndex2++
 				nodeIndex++
 			
@@ -140,7 +146,7 @@ class NeuralModelVisualizer
 			nodeIndex = 0
 			while nodeIndex < @sizes[layerIndex]
 				node = @getNode(layerIndex, nodeIndex)
-				@drawNode node.x, node.y, node.radius
+				@drawNode(node.x, node.y, node.radius)
 				nodeIndex++
 
 		return
