@@ -14,13 +14,19 @@ class CartSimulation
 		@boxHalfSize = 50
 
 		# Acceleration used for movement of the cart on key press.
-		@moveAcceleration = 2.0
+		@moveAcceleration = 250
 
 		# Limit angle that the pendulum can reach.
-		@limitAngle = 0.7
+		@limitAngle = 0.8
 
 		# Friction applyed to the velocity of the cart
-		@friction = 0.01
+		@friction = 0.6
+
+		# Gravity defines the intensity of the force pulling the pendulum down.
+		@pendulumGravity = 1.3
+
+		# Pendulum momentum defines how speed afects the pendulum
+		@pendulumMomentum = 0.01
 
 		# Box that represents the cart.
 		@cart = new Box(new Vector2(-@boxHalfSize, -30), new Vector2(@boxHalfSize, 30))
@@ -45,9 +51,11 @@ class CartSimulation
 		@leftPressed = false
 		@rightPressed = false
 		@acceleration = 0.0
-		@velocity = (Math.random() *  2 - 1.0)
-		@velocity += @velocity < 0 ? -0.2 : 0.2
-		@angle = 0
+		
+		@velocity = (Math.random() * 2 - 1.0) * 100
+		@velocity += @velocity < 0 ? -50 : 50
+
+		@angle = 0 #(Math.random() - 0.5) * 0.5
 
 
 	# Draw the simulation to a context 2D for visualization.
@@ -97,16 +105,12 @@ class CartSimulation
 		# Update physics
 		@velocity += @acceleration * delta
 		@velocity *= 1 - (@friction * delta)
-
 		@position += @velocity * delta
 
-		pendulumGravity = 2.0
-		pendulumMomentum = 0.5
+		@angle += @angle * @pendulumGravity * delta
+		@angle -= @velocity * @pendulumMomentum * delta
 
-		@angle += (@angle * pendulumGravity - @velocity * pendulumMomentum) * delta
 		@score += delta
-
-		console.log(delta, @velocity, @angle, @score, @position)
 
 		# If the angle of the pendulum drop bellow the minium end the game
 		if @angle > @limitAngle or @angle < -@limitAngle
