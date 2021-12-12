@@ -32,6 +32,8 @@ class NeuralModel
 
 		output = @net.run(input)
 
+		console.log(output)
+
 		cart.leftPressed = output[0] > 0.5
 		cart.rightPressed = output[1] > 0.5
 

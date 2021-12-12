@@ -17,14 +17,14 @@ class NeuralModelVisualizer
 		@canvas = null
 		@context = null
 
-		@colors =
-			background: 'white'
+		@colors = {
 			nodeOutline: 'black'
 			inputLayerNode: 'blue'
 			outputLayerNode: 'green'
 			hiddenLayerNode: 'orange'
 			forwardArrow: 'black'
 			backArrow: 'violet'
+		}
 
 	# Create canvas element and attach it to the container.
 	#
@@ -33,7 +33,6 @@ class NeuralModelVisualizer
 		@canvas = document.createElement('canvas')
 		@canvas.width = @width
 		@canvas.height = @height
-		@canvas.style.background = @colors.background
 		if typeof @container == 'object'
 			@container.appendChild @canvas
 			@context = @canvas.getContext('2d')
