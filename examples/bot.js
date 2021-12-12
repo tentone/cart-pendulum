@@ -10,12 +10,12 @@
 
   document.body.onresize = function() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    return canvas.height = window.innerHeight;
   };
 
   CP.Runner.runGraphical(canvas, function(cart) {
     cart.leftPressed = cart.angle < 0;
-    cart.rightPressed = cart.angle > 0;
+    return cart.rightPressed = cart.angle > 0;
   });
 
 }).call(this);

@@ -10,7 +10,7 @@
 
   document.body.onresize = function() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    return canvas.height = window.innerHeight;
   };
 
   left = false;
@@ -24,7 +24,7 @@
     }
     // Right
     if (event.keyCode === 39) {
-      right = true;
+      return right = true;
     }
   };
 
@@ -35,7 +35,7 @@
     }
     // Right
     if (event.keyCode === 39) {
-      right = false;
+      return right = false;
     }
   };
 
@@ -44,15 +44,15 @@
   CP.Runner.runGraphical(canvas, (function(cart) {
     cart.leftPressed = left;
     cart.rightPressed = right;
-    recorder.record(cart);
+    return recorder.record(cart);
   }), function(cart, score) {
-    recorder.end(score);
+    return recorder.end(score);
   });
 
   exp = document.getElementById('export');
 
   exp.onclick = function() {
-    CP.Utils.writeFile(recorder.getData(), 'data.json');
+    return CP.Utils.writeFile(recorder.getData(), 'data.json');
   };
 
 }).call(this);

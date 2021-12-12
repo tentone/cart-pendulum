@@ -10,6 +10,9 @@ class NeuralModelVisualizer
 		@outputLayer = @net.outputs
 		@sizes = @net.sizes
 		
+		@width = 400
+		@height = 400
+
 		@container = container
 		@canvas = null
 		@context = null
@@ -28,8 +31,8 @@ class NeuralModelVisualizer
 	# The container has to be destroyed manually when it is no longer required.
 	createCanvas: () ->
 		@canvas = document.createElement('canvas')
-		@canvas.width = 400
-		@canvas.height = 400
+		@canvas.width = @width
+		@canvas.height = @height
 		@canvas.style.background = @colors.background
 		if typeof @container == 'object'
 			@container.appendChild @canvas
@@ -114,14 +117,8 @@ class NeuralModelVisualizer
 	#
 	# Will iterate over the network structure and draw its layers in collumns
 	render: () ->
-		console.log(@net)
-
 		if @canvas == null or @context == null
 			@createCanvas()
-
-		
-		console.log(@canvas)
-		console.log(@context)
 
 		#We draw arrows first
 		for layerIndex of @sizes
@@ -145,7 +142,7 @@ class NeuralModelVisualizer
 			while nodeIndex < @sizes[layerIndex]
 				node = @getNode(layerIndex, nodeIndex)
 				@drawNode node.x, node.y, node.radius
-			nodeIndex++
+				nodeIndex++
 
 		return
 
