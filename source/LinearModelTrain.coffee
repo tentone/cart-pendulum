@@ -19,7 +19,7 @@ class LinearModelTrain
 		runs = if runs != undefined then runs else 5
 
 		# If the model reaches this level of performance the training is stopped.
-		scoreLimit = if scoreLimit != undefined then scoreLimit else 2000.0
+		scoreLimit = if scoreLimit != undefined then scoreLimit else 60.0
 
 		console.log(' - Training process starting. ', {epochs, iterations, runs})
 
@@ -70,7 +70,7 @@ class LinearModelTrain
 		runs = if runs != undefined then runs else 5
 
 		# If the model reaches this level of performance the training is stopped.
-		scoreLimit = if scoreLimit != undefined then scoreLimit else 2000.0
+		scoreLimit = if scoreLimit != undefined then scoreLimit else 60.0
 
 		console.log(' - Training process starting. ', {iterations, runs})
 

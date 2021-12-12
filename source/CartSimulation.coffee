@@ -20,10 +20,10 @@ class CartSimulation
 		@limitAngle = 0.8
 
 		# Friction applyed to the velocity of the cart
-		@friction = 0.6
+		@friction = 0.5
 
 		# Gravity defines the intensity of the force pulling the pendulum down.
-		@pendulumGravity = 1.3
+		@pendulumGravity = 1.4
 
 		# Pendulum momentum defines how speed afects the pendulum
 		@pendulumMomentum = 0.01
@@ -47,16 +47,15 @@ class CartSimulation
 	reset: () ->
 		@gameOver = false
 		@score = 0
-		@position = 0
+
 		@leftPressed = false
 		@rightPressed = false
-		@acceleration = 0.0
 		
+		@angle = 0
+		@acceleration = 0.0
+		@position = 0
 		@velocity = (Math.random() * 2 - 1.0) * 100
 		@velocity += @velocity < 0 ? -50 : 50
-
-		@angle = 0 #(Math.random() - 0.5) * 0.5
-
 
 	# Draw the simulation to a context 2D for visualization.
 	# 
