@@ -44,13 +44,14 @@
         },
         fontSize: '12px',
         hidden: {
-          color: "#BB0000BB"
+          color: "#BB7733BB"
         },
         outputs: {
-          color: "#0000BBBB"
+          color: "#3333BBBB",
+          labels: ['Left', 'Right']
         },
         inputs: {
-          color: '#00BB00BB',
+          color: '#3BB33BB',
           labels: ['Position', 'Velocity', 'Angle']
         }
       };
